@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN" style="font-size: 100px;">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>书架</title>
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .btn1 {
+            position: fixed;
+            padding:0 13px;
+            padding-top: 20px;
+            height:1rem;
+            width: 100%;
+            z-index: 99999;
+            background: #fff;
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0 7px 5px -5px #eee;
+        }
+
+        .btn {
+            font-size: 0.28rem;
+            text-align: center;
+            color: #000000;
+            padding-bottom: 12px;
+            margin: 0 16px;
+            
+            
+        }
+
+        .content {
+            margin: 0 auto;
+            display: none;
+            font-size: 0.24rem;
+            margin-bottom:1rem;
+            padding-top: 0.9rem;
+        }
+
+
+        .btn.active {
+            border-bottom: 3px solid #0060FF;
+            color: #0060FF;
+        }
+
+        .content.show {
+            display: block;
+
+        }
+        .hdygbox {
+            background: #000;
+            width:50px;
+            height:50px;
+        }
+
+        .box1 {
+
+            color: #fff;
+            position: relative;
+            margin-bottom:0.2rem;
+        }
+        .reservationCol ul li {
+            float: left;
+            text-align: center;
+            width:33%;
+            margin-bottom: 0.3rem;
+
+        }
+        .reservationCol ul li:nth-child(3n+3){
+            margin-right:0px;
+        }
+        .reservationCol ul li img{
+           width:96px;
+           height:132px;
+           margin-left: 15px;
+        }
+        .reservationCol ul{
+            margin:0 16px;
+            display:flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin-top:22px;
+        }
+        .reservationCol ul li p{
+            
+                overflow:hidden;
+             text-overflow:ellipsis;
+             white-space: nowrap ;
+             color:#2A2A2A;
+             padding-top: 10px;
+             padding-bottom: 2px;
+        }
+        .reservationCol ul li span{
+            color:#B4B4B4;
+        }
+    </style>
+</head>
+<body >
+<div class="btn1 " >
+    <div class="btn active" style="float:left;" role="button" title="点击切换按钮">有声读物</div>
+    <div class="btn " style="float:left;"  role="button" title="点击切换按钮">电子图书</div>
+    <div class="btn" style="float:left;" role="button" title="点击切换按钮">视频课程</div>
+    <div class="btn " style="float:left;"  role="button" title="点击切换按钮">期刊杂志</div>
+</div>
+<div class="content show fontColor" >
+    <div class="reservationCol">
+        <ul>
+            <li>
+                <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我第一章</p>
+                    <span>第一章</span>
+            </li>
+            <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我</p>
+                    <span>第一章 </span>
+            </li>
+            <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我</p>
+                    <span>第一章</span>
+            </li>
+            <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我</p>
+                    <span>第一章</span>
+            </li>
+            <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我</p>
+                    <span>第一章 </span>
+            </li>
+            <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                    <p>第一章 永远记得我</p>
+                    <span>第一章 </span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content " style="background: #fff;">
+    <div class="reservationCol">
+            <ul>
+                <li>
+                    <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我第一章</p>
+                        <span>第一章</span>
+                </li>
+                <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我</p>
+                        <span>第一章 </span>
+                </li>
+                <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我</p>
+                        <span>第一章</span>
+                </li>
+                <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我</p>
+                        <span>第一章</span>
+                </li>
+                <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我</p>
+                        <span>第一章 </span>
+                </li>
+                <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                        <p>第一章 永远记得我</p>
+                        <span>第一章 </span>
+                </li>
+            </ul>
+    </div>
+</div>
+<div class="content " style="background: #fff;">
+        <div class="reservationCol">
+                <ul>
+                    <li>
+                        <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我第一章</p>
+                            <span>第一章</span>
+                    </li>
+                    <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我</p>
+                            <span>第一章 </span>
+                    </li>
+                    <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我</p>
+                            <span>第一章</span>
+                    </li>
+                    <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我</p>
+                            <span>第一章</span>
+                    </li>
+                    <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我</p>
+                            <span>第一章 </span>
+                    </li>
+                    <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                            <p>第一章 永远记得我</p>
+                            <span>第一章 </span>
+                    </li>
+                </ul>
+        </div>
+    </div>
+    <div class="content " style="background: #fff;">
+            <div class="reservationCol">
+                    <ul>
+                        <li>
+                            <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我第一章</p>
+                                <span>第一章</span>
+                        </li>
+                        <li>
+                                <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我</p>
+                                <span>第一章 </span>
+                        </li>
+                        <li>
+                                <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我</p>
+                                <span>第一章</span>
+                        </li>
+                        <li>
+                                <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我</p>
+                                <span>第一章</span>
+                        </li>
+                        <li>
+                                <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我</p>
+                                <span>第一章 </span>
+                        </li>
+                        <li>
+                                <img src="../dist/images/2.jpg" alt="">
+                                <p>第一章 永远记得我</p>
+                                <span>第一章 </span>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+<!-- <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;width: 100%; background: #fff;z-index:999">
+        <img src="{CBL_MANGTU_RES}/home/images/fanhui.png" style="width: 0.44rem;height: 0.36rem;margin-left: 0.54rem;margin-top: 0.3rem;" onclick="previousPage();"  alt="返回上一级"  role="button"/>
+		<img src="{CBL_MANGTU_RES}/home/images/shouye.png" style="width:0.6rem;height:0.56rem;position: absolute;bottom:0.2rem;right:2.4rem;"  onclick="goindex();"  alt="返回首页"  role="button"/>
+	    <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+	    <img class="changefbgcolor" src="{CBL_MANGTU_RES}/home/images/changebg.png" style="width:0.6rem;height:0.6rem;position: absolute;bottom:0.2rem;right:0.46rem;" alt="点击改变背景颜色和字体颜色" role="button"/>
+    </div> -->
+<!-- <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+<script>
+        //获取页面的每个按钮
+        var btns = document.getElementsByClassName("btn")
+        //获取内容盒子
+        var contents = document.getElementsByClassName("content")
+    
+       
+        //遍历每个按钮为其添加点击事件
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                //对当前点击的按钮赋予active类名及显示当前按钮对应的内容
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].className = btns[j].className.replace(' active', '').trim();
+                    contents[j].className = contents[j].className.replace(' show', '').trim();
+                }
+                this.className = this.className + ' active';
+                contents[this.index].className = contents[this.index].className + ' show';
+                console.log(this.index)
+                console.log(contents[this.index].className)
+            };
+    
+        }
+        
+       
+    </script>
+
+</body>
+
+</html>
+

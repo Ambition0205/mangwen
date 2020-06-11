@@ -1,0 +1,22 @@
+<html>    
+    <body>
+        <div id="container">
+            <button id="play">
+                Play Music
+            </button>
+        </div>
+        <script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+        <script>
+            $('document').ready(function () {
+                $('#play').click(function () {
+                    var audio = {};
+                    audio["walk"] = new Audio();
+                    audio["walk"].src = "http://www.rangde.org/static/bell-ring-01.mp3"
+                    audio["walk"].addEventListener('load', function () {
+                        audio["walk"].play();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

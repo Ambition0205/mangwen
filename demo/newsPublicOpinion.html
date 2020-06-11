@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en" style="font-size: 100px;">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>新闻舆论</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- <script src="../dist/js/changes.js"></script> -->
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .newsList{
+            border-bottom:1px solid #eee;
+            padding-bottom: 0.4rem;
+            
+        }
+        .classification li{
+            float: left;
+            width:1.55rem;
+            height:44px;
+            line-height: 44px;
+            color:#353438;
+            font-size: 0.28rem;
+            background: #F8F7FA;
+            margin-right:0.16rem;
+            text-align: center;
+            margin-bottom:0.3rem;
+        }
+        .classification li.active{
+            background: url("../dist/images/Beijingimg2.png") no-repeat center center;
+            background-size: 2.34rem 2.18rem;;
+            border-radius: 0.1rem;
+            color:#fff;
+        }
+        .classification li:nth-child(4),.classification li:nth-child(8){margin-right:0rem;}
+
+        .conLists ul li .conLists_Title{
+            display:inline-block;
+            width:4rem;
+            margin-top:0.2rem;
+        }
+        .conLists ul li {
+            height: 1.06rem;
+            border-bottom:1px solid #F8F7FA;
+            position: relative;
+            line-height: 0.4rem;
+        }
+        .conLists ul li .timeimg{
+            position: absolute;
+            top: 0.4rem;
+            right:0;
+            font-size: 0.24rem;
+            color:#ADADAD
+        }
+        .conLists ul li .timeimg img{
+            width:0.28rem;
+            height:0.28rem;
+            vertical-align: middle;
+          
+        }
+    </style> 
+</head>
+<body style="background: #fff;">
+    <div style="background: #F2F2F2;height: 0.28rem;"></div>
+    <div style="margin-left:0.3rem; margin-right:0.34rem;margin-top:0.3rem;">
+        <div class="newsList">
+            <ul class="classification clearfix">
+                <li class="active">本馆新闻</li>
+                <li>通知公告</li>
+                <li>文化活动</li>
+                <li>残联要闻</li>
+                <li>服务资讯</li>
+                <li>党团建设</li>
+                <li>国际前沿</li>
+                <li>分支风采</li>
+            </ul>
+        </div>
+        <div class="conLists">
+            <ul>
+                <li>
+                    <span class="conLists_Title">国家卫生计生委机关3号楼空调更新项目</span>
+                    <div class="timeimg"> 
+                        <img src="../dist/images/naozhong.png" alt="">  
+                        <span>2018-09-04</span>
+                    </div> 
+                </li>
+                <li>
+                    <span class="conLists_Title">国家卫生计生委机关3号楼空调更新项目</span>
+                    <div class="timeimg">
+                         <img src="../dist/images/naozhong.png" alt="" >  
+                        <span>2018-09-04</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="conLists_Title">国家卫生计生委机关3号楼空调更新项目</span>
+                    <div class="timeimg"> 
+                        <img src="../dist/images/naozhong.png" alt="" >  
+                        <span>2018-09-04</span>
+                    </div>
+                </li>
+            </ul>
+    
+        </div>
+    </div>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #ccc;position: fixed;width: 100%; background: #fff;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+        <img class="changefbgcolor" src="../dist/images/1.png" style="width:0.66rem;height:0.66rem;position: absolute;    bottom: 6px;right: 123px;"/>
+        <img class="changefbgcolor" src="../dist/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.46rem;"/>
+        <img class="changefont" src="../dist/images/changebg.png" style="width:0.66rem;height:0.66rem;position: absolute;bottom:0.2rem;right:0.44rem;"/>
+    </div>
+
+<!--改变背景颜色字体 字号的js  -->
+<script type="text/javascript" src="../dist/js/changeBgcolor.js"></script>
+<script type="text/javascript">
+    var lists=document.getElementsByTagName('li')
+	// 点击改变li的样式 
+	for(let i=0;i<lists.length;i++){
+		lists[i].addEventListener('click',function(){
+			lists[i].classList.add('active')
+			for(let j=0;j<lists.length;j++){
+				if(i!=j){
+					lists[j].classList.remove('active')
+				}
+			}
+		})
+    };
+
+</script>
+</body>
+
+</html>
+

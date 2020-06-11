@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>馆藏检索</title>
+    <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        
+        .page{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .content{
+            flex: 1;
+            overflow: auto;
+            
+            margin:0 0.4rem;
+             /*margin-top:0.26rem; */
+        }
+        .content .jslb ul {
+            margin-top:16px;
+        }
+         .content .jslb ul li{
+            float:left;
+            background: #EFEFEF;
+            border:1px solid #EFEFEF;
+            padding:8px 10px;
+            border-radius: 10px;
+            margin-right:12px;
+            margin-bottom:12px;
+            color:#656565;
+        }
+         .content .jslb ul li.active{
+         	 float:left;
+         	background: #fff;
+         	border:1px solid #EFEFEF;
+        	 border-radius: 10px;
+            margin-right:12px;
+            margin-bottom:12px;
+         }
+        .footer{
+            font-size:40px;
+        }
+
+    </style>
+</head>
+
+<body class="clearfloat" style="background: #fff;">
+        <div class="page">
+                <div class="header">
+					<img src="{CBL_MANGTU_RES}/home/images/banner@2x@2x.png" alt="中国盲文图书馆馆藏检索" style="width: 7.5rem;height:3.3rem">
+					<div style="display: flex;position: relative;z-index: 102;background: #fff;" class="searchbg">
+						<div style=" align-items: center;width: 90%;order: 2; margin: 0.2rem 0 0.5rem 0;">
+							<div style=" background: #f0f0f0;border-radius: 3px;position: relative;width: 7.16rem;margin: 0 auto;height: 0.8rem;margin-left:0.2rem;">
+								<img src="{CBL_MANGTU_RES}/home/images/soushuo.png" alt="搜索" style="width:0.28rem;height: 0.28rem;position: absolute;left: 0.22rem;top: 0.28rem;">
+								<!-- <i class="icon icon-search" ></i> -->
+								<input type="text" placeholder="馆藏检索" style="background: none;border: none;text-align: left;height: 0.8rem;width: 67%;font-size:0.25rem;border-radius: 22px;position: absolute;left: 0.6rem;" id="inputCon">
+							  <div style="text-align:center;float:right;height: 0.8rem;line-height: 0.8rem;border-radius:0 3px 3px 0;;background:#0060FF;color:#fff;border:1px solid #0060FF;width:80px;" onclick="search();">搜索</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="content">
+                    <div style="color:#2C2C2C;font-size:0.32rem;" class="jslbtitle">检索类别</div>
+                    <div class="jslb">
+                        <ul class="clearfix" >
+                        	<li class="active" data-value="">任意词</li>
+                            <li data-value="title">题名</li>
+                            <li data-value="title200a">正题名</li>
+                            <li data-value="isbn">ISBN/ISSN</li>
+                            <li data-value="author">著者</li>
+                            <li data-value="subject">主题词</li>
+                            <li data-value="class">分类号</li>
+                            <li data-value="ctrlno">控制号</li>
+                            <li data-value="orderno">订购号</li>
+                            <li data-value="publisher">出版社</li>
+                            <li data-value="callno">索书号</li>
+                        </ul>
+                    </div>
+                    <div style="color:#2C2C2C;font-size:0.32rem;margin-bottom:0.32rem;margin-top:0.26rem;" class="jssstitle">检索方式</div>
+                    <div class="jsss">
+                        <input type="radio" name="gender" value="dim" checked="checked" /><span style="margin-right:0.6rem;">模糊检索</span>
+                        <input type="radio" name="gender" value="full" /><span style="margin-right:0.6rem;">精确检索</span>
+                        <input type="radio" name="gender" value="prefixMatch"  /> <span style="margin-right:0.6rem;">前方一致</span>
+                    </div>
+                </div>
+                <div class="footer">
+                		<div>
+							<img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>
+						</div>
+						<div style="display:none">
+					    	<img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+						</div>
+                </div>
+		</div>
+		<script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+		<script>
+			window.onload=function(){
+					var param = '{$sizeSet}'; 
+					console.log(param)
+					var colorParam ="{$textColor}"
+				  	if(colorParam=='黑白对比度'){
+				  		 $('body,.inputbg').css('background-color', '#000');
+				  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#F7F7F7');
+				  	}
+				  	if(colorParam=='白蓝对比度'){
+				  		 $('body,.inputbg').css('background-color', '#fff');
+				  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+				  	}
+				  	if(colorParam=='蓝黄对比度'){
+				  		 $('body,.inputbg').css('background-color', '#0915F5');
+				  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#FFFE54');
+				  	}
+				  	if(colorParam=='白红对比度'){
+				  		 $('body,.inputbg').css('background-color', '#fff');
+				  		  //$('.jslb ul li.active').css('background-color', '#red');
+				  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+				  	}
+				  	if(colorParam=='白黑对比度'){
+				  		console.log('你回复了默认')
+				  	}
+				  	if(colorParam=='黄黑对比度'){
+				  		 $('body,.inputbg').css('background-color', '#FFFE54');
+				  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+				  	}	
+				  	if(param==1){
+					$('.changefont').click()
+					 
+				  	}
+			}
+			var getlist_url="{php echo $this->createMobileUrl('collection',array('type'=>'list'));}";
+			// 
+		    function search(){
+		        var title = $("#inputCon").val();
+		        var searchWay = $('.jslb ul li.active').attr('data-value');
+		        var scWay = $("input[name=gender]:checked").val();
+		        console.log(title+'==='+searchWay+'===='+scWay);
+		        window.location.href=getlist_url+"&title="+title+"&searchWay="+searchWay+"&scWay="+scWay;
+		    }
+		    // 点击切换选中状态
+		    $('.jslb ul li').click(function(){
+		        $(this).addClass("active")
+		        $(this).siblings().removeClass();
+		        var text=$(this).addClass("active").html();
+
+    		})
+			//返回首页
+			 function goindex(){
+		         //content = JSON.parse(Content);
+		         window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+		     }
+		     //改变字体大小
+		     $('.changefont').on('click', function () {
+		            $('.content .jslb ul li,.jsss span').css('font-size', '0.48rem');
+		            $('.jssstitle,.jslbtitle').css('font-size', '0.52rem');
+		            $('.jsss input').css({"width": "20px","height":"20px"});
+		          
+		   });
+	</script>
+
+
+
+</body>
+</html>
+
+
+

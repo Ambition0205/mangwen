@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>案例</title>
+    <link rel="stylesheet" href="./dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+         body{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .page{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .header{
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            font-size:40px;
+        }
+        .content{
+            flex: 1;
+            overflow: auto;
+            border: 1px solid red;
+        }
+        .footer{
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            font-size:40px;
+        }
+
+    </style>
+</head>
+
+<body class="clearfloat">
+        <div class="page">
+                <div class="header">
+                    i am header
+                </div>
+                <div class="content">
+                    content
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    content
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    content
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    content
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    content
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+                    <p>121212</p>
+
+                </div>
+                <div class="footer">
+                    footer
+                </div>
+            </div>
+            <script>
+            
+            var t = "20190923";
+     
+        var t_formatted = t.replace(/(\d{4})(\d\d)(\d\d)/, "$1-$2-$3");
+            
+        // 1985-09-27
+        alert(t_formatted);
+
+            </script>
+</body>
+
+</html>

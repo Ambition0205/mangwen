@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en" style="font-size: 100px;">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>我预约的馆藏</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100 
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .reservationCol li{
+            margin:0.24rem 0.2rem 0.2rem 0.2rem;
+            background: #fff;
+            border-radius: 0.06rem;
+            
+        }
+        .reservationCol .btns{
+           width:6.2rem;
+           height: 0.8rem;
+           line-height: 0.8rem;
+           color:#fff;
+           background: #0060FF;
+           font-size: 0.32rem;
+           border-radius: 0.6rem;
+           text-align: center;
+           margin:0.3rem 0;
+           margin-left:0.46rem;
+           
+        }
+        .reservationCol h4{
+            color:#333;
+            font-size: 0.3rem;
+            padding-top:0.3rem;
+            margin-bottom:0.2rem;
+            margin-left: 0.6rem;
+        }
+        .reservationCol p{
+            margin-left: 0.6rem;
+            font-size: 0.24rem;
+        }
+
+        .btn1 {
+            position: fixed;
+            padding-top: 0.4rem;
+            padding-left: 1.6rem;
+            height:1.3rem;
+            width: 100%;
+            z-index: 99999;
+            background: #fff;
+        }
+
+        .btn {
+            font-size: 0.3rem;
+            width: 2.16rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            color: #666666;
+            background: #F2F2F2;
+        }
+
+        .content {
+            margin: 0 auto;
+            display: none;
+            font-size: 0.24rem;
+            margin-bottom:1rem;
+            padding-top: 1.2rem;
+        }
+
+        
+        .btn.active {
+            background-color: #0060FF;
+            color: #fff;
+        }
+
+        .content.show {
+            display: block;
+
+        }
+        .hdygbox {
+            margin-left: 0.66rem;
+            margin-right: 0.62rem;
+            padding-top: 0.54rem;
+            
+        }
+
+        .box1 {
+
+            color: #fff;
+            position: relative;
+            margin-bottom:0.2rem;
+        }
+    </style>
+</head>
+<body >
+    <div class="btn1 " >
+        <div class="btn active" style="float:left;border-bottom-left-radius: 30px;border-top-left-radius: 30px;font-size: 14px;">我预约的馆藏</div>
+        <div class="btn" style="float:left;border-bottom-right-radius: 30px;border-top-right-radius: 30px;">活动预告</div>
+    </div>
+    <div class="content show" >
+        <div class="reservationCol">
+            <ul>
+                <li>
+                    <h4>书籍《家》、书籍《挪威的森林》</h4>
+                    <p>借阅数量：2件</p>
+                    <p>日期：2019年07月09日</p>
+                    <p>借阅周期：3个月</p>
+                    <p>归还日期：2019年07月22日</p>
+                    <button class="btns">选择取书方式</button>
+                </li>
+                <li>
+                    <h4>书籍《家》、书籍《挪威的森林》</h4>
+                    <p>借阅数量：2件</p>
+                    <p>日期：2019年07月09日</p>
+                    <p>借阅周期：3个月</p>
+                    <p>归还日期：2019年07月22日</p>
+                    <button class="btns">选择取书方式</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content" style="background: #fff;">
+        <div style="background: #f4f4f4;height: 0.25rem;width:100%;"></div>
+        <div class="hdygbox">
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#4C8BD1;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#574ECA;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#E8551E;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#4C8BD1;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#574ECA;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+            <div class="box1">
+                <img src="../dist/images/dingdiocn.png" alt=""
+                    style="width:0.86rem;height:0.86rem;position: absolute;top:-0.36rem;right:0.8rem;">
+                <img src="../dist/images/bgtsdlb1.png" alt="" style="width:6.24rem;height:3.64rem;">
+                <img src="../dist/images/shijian.png " alt=""
+                    style="width:0.4rem;height:0.4rem;position: absolute;top:0.32rem;left:0.4rem;">
+                <span style="position: absolute;top:0.36rem;left:0.9rem;font-size: 0.28rem;">2019-7-25 18:00-20:00</span>
+                <p style="font-size:0.44rem;position: absolute;top:0.98rem;left:0.4rem;">图书大礼包</p>
+                <p style="font-size:0.28rem;position: absolute;top:1.58rem;left:0.4rem;">所有理财产品，满1000元减300元</p>
+                <button
+                    style="font-size:0.32rem;font-weight:600;position: absolute;top:2.48rem;left:0.4rem;width:2.82rem;height: 0.68rem;color:#E8551E;background: #FBE8AB;border-radius: 0.6rem;border:1px solid #FBE8AB;">查看详情</button>
+            </div>
+        </div>
+    </div>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;width: 100%; background: #fff;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+    </div> 
+    <script>
+        //获取页面的每个按钮
+        var btns = document.getElementsByClassName("btn")
+        //获取内容盒子
+        var contents = document.getElementsByClassName("content")
+       
+
+        //遍历每个按钮为其添加点击事件
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                //对当前点击的按钮赋予active类名及显示当前按钮对应的内容
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].className = btns[j].className.replace(' active', '').trim();
+                    contents[j].className = contents[j].className.replace(' show', '').trim();
+                }
+                this.className = this.className + ' active';
+                contents[this.index].className = contents[this.index].className + ' show';
+                console.log(this.index)
+                console.log(contents[this.index].className)
+            };
+
+        }
+    </script>
+</body>
+
+</html>
+

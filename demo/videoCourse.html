@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh" style="font-size:100px;">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频课程</title>
+<!--可无视-->
+<link rel="stylesheet" type="text/css" href="../dist/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="../dist/css/index.css">
+
+<!--布局样式，意义不大-->
+<link rel="stylesheet" href="../dist/css/demo.css">
+
+<!--核心样式-->
+<link rel="stylesheet" href="../dist/css/ckin.css">
+<script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+</script>
+<style>
+	#demo{
+		padding:0 0.3rem;
+		position: fixed;
+		background: #fff;
+		z-index: 999;
+	}
+	.container{
+		margin-top:0.4rem;
+	}
+	#lists {
+            position: relative;
+    }
+
+	#lists ul {
+		margin-left: 0.2rem;
+	}
+
+	#lists ul li {
+		font-size: 0.28rem;
+		height: 0.82rem;
+		line-height: 0.82rem;
+		border-bottom: 1px solid #eee;
+	}
+	#lists ul li.active{
+		color:#333;
+		background: #eee;
+	}
+</style>
+
+
+</head>
+<body style="background:#fff;">
+
+<section class="demo-section demo-section--light" id="demo">
+	<!-- 视频播放 -->
+	<div class="container"><video poster="../dist/images/ckin.jpg" src="../dist/video/ckin.mp4" data-ckin="default" data-overlay="1" ></video></div>	
+</section>
+<div style="position: absolute;top:5.4rem;margin:0 0.3rem;">
+	<!-- 视频课程 -->
+	<div class="spkcbox" >
+		<h4 style="font-size:0.32rem;margin-bottom: 0.2rem;">视频课程</h4>
+		<div style="font-size: 0.24rem;color:#999;margin-bottom:0.38rem;">
+			《挪威的森林》是日本作家村上春树于1987年所著的一部长篇爱情小说。故事讲述主角纠缠在情绪不稳定且患有精神疾病的直子和开朗活泼的小林绿子之间，展开了自我成长的旅程。
+		</div>
+		<div class="clearfix" style="width:100%;height: 0.98rem;line-height: 0.98rem;">
+			<div style="font-size:0.32rem;color:#666666;float:left;width:49%;">
+				<img src="../dist/images/ic_comment.png" alt="评论"
+					style="width:0.48rem;height:0.48rem;float:left;margin-top: 14px;margin-right:10px;margin-left: 0.81rem;">
+				<span style="padding-top:10px;">评论</span>
+			</div>
+			<span style="float:left;width:1px;height:15px;margin-top:4px;background:#ccc;display:inline-block;margin-top: 19px;"></span>
+			<div style="font-size:0.32rem;color:#666666;float:left;width:49%;">
+				<img src="../dist/images/ic_collection.png" alt="收藏"
+					style="width:0.48rem;height:0.43rem;margin-left: 1.21rem;float:left;margin-top: 14px;margin-right:10px;">
+				<span style="padding-top:10px;">已收藏</span>
+			</div>
+		</div>
+	</div>
+	<!-- 章节类表 -->
+	<div style="margin-top:0.15rem;">
+			<div class="clearfix" style="width:100%;">
+				<p style="font-size:0.32rem;color:#333;font-weight: 600;float:left;margin-bottom: 10px;">章节列表</p>
+				
+			</div>
+			<div id="lists">
+				<span style="color:#BBB;font-size:0.24rem;position: absolute;right:0rem;top:0.3rem;">上次播放</span>
+				<ul>
+					<li class="active">
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+					<li>
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+					<li>
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+					<li>
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+					<li>
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+					<li>
+						第一章 永远记得我
+					</li>
+					<li>
+						第二章 好友之死
+					</li>
+					<li>
+						第三章 黑暗中的裸体
+					</li>
+				</ul>
+			</div>
+	
+	</div>
+</div>
+<script src="../dist/js/ckin.js"></script>
+<script>
+	var lists=document.getElementsByTagName('li')
+	// 点击改变li的样式 
+	for(let i=0;i<lists.length;i++){
+		lists[i].addEventListener('click',function(){
+			lists[i].classList.add('active')
+			for(let j=0;j<lists.length;j++){
+				if(i!=j){
+					lists[j].classList.remove('active')
+				}
+			}
+		})
+	}
+</script>
+</body>
+</html>

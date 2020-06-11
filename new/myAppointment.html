@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css"> -->
+    <link rel="stylesheet" href="../dist/css/index.css">
+	<title>我的预约</title>
+	<script>
+		function resetFontSize() {
+			var baseFontSize = 100
+			var designWidth = 750
+			var width = window.innerWidth
+			var currentFontSize = (width / designWidth) * baseFontSize
+			document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+		}
+		window.onresize = function () {
+			resetFontSize()
+		};
+		resetFontSize()
+	</script>
+	<style>
+
+		.boxtwo li{
+			position: relative;
+			color:#0C0C0C;
+			margin:0.26rem;
+			background: #fff;
+			border-radius: 0.1rem;
+		}
+		.tximg{
+			width:1.6rem;
+			height:2.2rem;
+			margin:0.2rem;
+			margin-right:0.3rem;
+
+		}
+	</style>
+</head>
+
+<body>
+
+
+<div>
+	<ul class="boxtwo">
+	    <!-- {loop $list $item} -->
+		<li >
+			<div class="clearfix" style="margin-bottom:12px;">
+                <!-- <img src="{CBL_MANGTU_RES}/home/images/3.jpg" alt="" class="tximg fl"> -->
+                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+				<div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;" class="titles">习近平谈治国理论</div>
+				<div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">习近平著</div>
+				<div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">外文出版社</div>
+				<div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">序列号：<span>2019-11-10</span></div>
+                <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">到期时间：<span class="datas">2019-12-10</span></div>
+                <div style="text-align: center;margin-bottom: 20px;margin-top:20px;">
+                    <button style="width:310px;height:40px;line-height:40px;background:#DE1212;border:1px solid #DE1212;border-radius:30px;color:#fff;font-size:16px;" class="cancelRes" onclick="buttonClick();">取消预约</button>
+                </div>
+			</div>
+		</li>
+        <!-- {/loop} -->
+
+	</ul>
+</div>
+	<!-- <div>
+		<img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>
+    </div>
+	<div style="display:none">
+	    <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+	</div> -->
+<!-- <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script> -->
+
+<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+<script>
+	window.onload=function(){
+		var param = '{$sizeSet}'; 
+		console.log(param)
+		var colorParam ="{$textColor}"
+	  	if(colorParam=='黑白对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#000');
+	  		 $('.boxtwo li div').css('color', '#F7F7F7');
+	  	}
+	  	if(colorParam=='白蓝对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#fff');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}
+	  	if(colorParam=='蓝黄对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#0915F5');
+	  		 $('.boxtwo li div').css('color', '#FFFE54');
+	  	}
+	  	if(colorParam=='白红对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#fff');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}
+	  	if(colorParam=='白黑对比度'){
+	  		console.log('你回复了默认')
+	  	}
+	  	if(colorParam=='黄黑对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#FFFE54');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}	
+	  	if(param==1){
+		$('.changefont').click()
+	  	}
+
+
+        // 判断取消按钮的状态
+        // 获取当前时间
+     
+        var str = getFormatDate();
+       
+        var strdate =DateToUnix(str); 
+        console.log('当前时间',strdate)
+        // $(".content_list_time").text(str);
+        var endTime=$('.datas').text();
+        var date =DateToUnix(endTime); 
+        console.log('预约截至时间',date)
+        if(date<strdate){
+            $('.cancelRes').css({'background':'#b5b5b5','border':'1px solid #b5b5b5'}).prop("onclick",null).off("click")
+        }
+
+	}
+	var getdetail_url = "{php echo $this->createMobileUrl('collection',array('type'=>'detail'));}";
+	 function godetail(bookrecno){
+         //content = JSON.parse(Content);
+         window.location.href=getdetail_url+"&bookrecno="+bookrecno;
+     }
+      function goindex(){
+         //content = JSON.parse(Content);
+         window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+     }
+      //改变字体大小
+     $('.changefont').on('click', function () {
+              $('.titles').css('font-size', '0.48rem');
+            $('.fontsize').css('font-size', '0.32rem');
+             $('.tximg').css({"width": "2rem","height":"2.6rem"});
+          
+	});
+    function buttonClick(){
+        console.log(1)
+       
+   }
+
+   function DateToUnix(string) {
+                var f = string.split(' ', 2);
+                var d = (f[0] ? f[0] : '').split('-', 3);
+                var t = (f[1] ? f[1] : '').split(':', 3);
+                return (new Date(
+                    parseInt(d[0], 10) || null,
+                    (parseInt(d[1], 10) || 1) - 1,
+                    parseInt(d[2], 10) || null,
+                    parseInt(t[0], 10) || null,
+                    parseInt(t[1], 10) || null,
+                    parseInt(t[2], 10) || null
+            )).getTime() / 1000;
+    }
+    function getFormatDate(){
+        var nowDate = new Date();
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+        var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        var hour = nowDate.getHours()< 10 ? "0" + nowDate.getHours() : nowDate.getHours();
+        var minute = nowDate.getMinutes()< 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
+        var second = nowDate.getSeconds()< 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();
+        return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+    }
+</script>
+</body>
+</html>

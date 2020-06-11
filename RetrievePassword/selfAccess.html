@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>送书上门</title>
+    <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+    <link rel="stylesheet" type="text/css" href="{CBL_MANGTU_RES}/home/css/popup.css"/>
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+    	input[type=button] {
+		   -webkit-appearance: none;
+		}
+		input.color2::-webkit-input-placeholder,#content.color2::-webkit-input-placeholder{
+		 	color:#0915F5;
+		}
+        input.color3::-webkit-input-placeholder,#content.color3::-webkit-input-placeholder{
+			color:#FFFE54;
+        }
+        input.color4::-webkit-input-placeholder,#content.color4::-webkit-input-placeholder{
+			color:#C42A29;
+        } 
+        input.color5::-webkit-input-placeholder,#content.color5::-webkit-input-placeholder{
+			color:#000000;
+        } 
+        input.color1::-webkit-input-placeholder,#content.color1::-webkit-input-placeholder{
+			color:#F7F7F7;
+        }
+    </style>
+</head>
+
+<body style="background:#fff;">
+    <form action="" method="post" enctype="multipart/form-data"  style="text-align:right;margin-right:0.4rem;margin-top:0.2rem;" name="form1" onsubmit="return checkForm()">
+
+        <label class="label1" for="name">收件人姓名:</label>
+        <input class="input1" type="text" name="name" id="name" placeholder="请输入收件人姓名" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.6rem;"></br>
+
+        <label class="label1" for="phoneNum">收件人电话:</label>
+        <input class="input1" type="number" name="phoneNum" id="phoneNum" placeholder="请输入收件人电话" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.6rem;"></br>
+
+        <label class="label1" for="adress">送书地址:</label>
+        <input class="input1" type="text" name="adress" id="adress" placeholder="请输入送书地址" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.6rem;"></br>
+
+        <label class="label1" for="beizhu" style="float:left;margin-left:1.2rem;">备注：</label> 
+        <textarea cols="100" rows="5" placeholder="请输入……" style="padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;border:1px solid #0060FF;" id="content" class=""></textarea>
+        
+        <input type="submit" value="提交" onclick="checkForm()" style="border:1px solid #0060FF;background: #0060FF;width:6.2rem;height:0.8rem;color:#fff;border-radius: 30px;font-size:0.28rem;position: fixed;bottom: 0.2rem;left: 0.8rem;"/>
+    </form> 
+    <div class="footer">
+        <div>
+            <img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>
+        </div>
+        <div style="display:none">
+            <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+        </div>
+    </div>
+    <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/popup.js"></script>
+    <script src="{CBL_MANGTU_RES}/home/js/footerque.js"></script>
+<script>
+        var Popup = new Popup();
+        window.onload=function(){
+        var colorParam ="{$textColor}"
+        if(colorParam=='黑白对比度'){
+		  		 $('body,#content,input').css('background-color', '#000');
+		  		 $('#content,input').css('border', ' 1px solid #F7F7F7');
+				$("#content,input").attr("class","color1"); 
+		  		 $('#content,input,.label1').css('color', '#F7F7F7');
+		  	}
+		  	if(colorParam=='白蓝对比度'){
+		  		 $('body,#content,input').css('background-color', '#fff');
+		  		 $('#content,input').css('border', ' 1px solid #0915F5');
+		  		 $("#content,input").attr("class","color2"); 
+		  		 $('#content,input,.label1').css('color', '#0915F5');
+		  	}
+		  	if(colorParam=='蓝黄对比度'){
+		  		 $('body,#content,input').css('background-color', '#0915F5');
+		  		 $('#content,input').css('border', ' 1px solid #FFFE54');
+		  		 $("#content,input").attr("class","color3"); 
+		  		 $('#content,input,.label1').css('color', '#FFFE54');
+		  	}
+		  	if(colorParam=='白红对比度'){
+		  		 $('body,#content,input').css('background-color', '#fff');
+		  		 $('#content,input').css('border', ' 1px solid #C42A29');
+		  		 $("#content,input").attr("class","color4"); 
+		  		 $('#content,input,.label1').css('color', '#C42A29');
+		  	}
+		  	if(colorParam=='白黑对比度'){
+		  		console.log('你回复了默认')
+		  	}
+		  	if(colorParam=='黄黑对比度'){
+		  		 $('body,#content,input').css('background-color', '#FFFE54');
+		  		 $('#content,input').css('border', ' 1px solid #000000');
+		  		 $("#content,input").attr("class","color5"); 
+		  		 $('#content,input,.label1').css('color', '#000000');
+		  	}	
+    }
+    // 提交
+    function checkForm(){
+        var name=$("#name").val();
+        var phoneNum = $("#phoneNum").val();
+        var adress=$("#adress").val();
+        var content = $("#content").val();
+        var reg=/^1[345678]\d{9}$/;
+        if(name==''){
+            Popup.toast('输入不能为空!',1);return false;
+        }
+        if(phoneNum==''){
+            Popup.toast('输入不能为空!',1);return false;
+        }else if(reg.test(phoneNum)==false){
+            Popup.toast('格式不正确!',1);return false;
+        }
+        if(adress==''){
+            Popup.toast('输入不能为空!',1);return false;
+        }
+    }
+    //返回首页
+    function goindex(){
+        //content = JSON.parse(Content);
+        window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+    }
+    </script>
+</body>
+
+</html>

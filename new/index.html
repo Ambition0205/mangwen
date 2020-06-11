@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>盲文图书馆</title>
+	<link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+	<script>
+		function resetFontSize() {
+			var baseFontSize = 100
+			var designWidth = 750
+			var width = window.innerWidth
+			var currentFontSize = (width / designWidth) * baseFontSize
+			document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+		}
+		window.onresize = function () {
+			resetFontSize()
+		};
+		resetFontSize()
+	</script>
+	<style>
+		.top {
+			margin:15px 15px 0;
+			position: relative;
+			color:#fff;
+		}
+		
+
+		/*.ul {*/
+		/*	width: 3rem;*/
+		/*	height: 0.3rem;*/
+		/*	font-size: 0.2rem;*/
+		/*	line-height: 0.3rem;*/
+		/*	text-align: center;*/
+		/*	margin: 0 auto;*/
+		/*}*/
+
+		/*.first {*/
+		/*	display: inline-block;*/
+		/*	width: 0.3rem;*/
+		/*	height: 0.05rem;*/
+		/*	background-color: #c4c4c4;*/
+		/*	margin-right: 0.3rem;*/
+		/*}*/
+
+		/*.first:hover {*/
+		/*	background-color: #0f90f7;*/
+		/*}*/
+
+		/* 类型内容 */
+		/*  .typeList li {*/
+  /*          float: left;*/
+  /*          list-style: none;*/
+  /*          width:33.3%;*/
+  /*          height: 2.34rem;*/
+  /*          text-align: center;*/
+  /*          border:1px solid #EAEAEA;*/
+  /*          font-size:0.28rem;*/
+  /*          margin:auto;*/
+           
+            
+  /*      }*/
+  /*      .typeList li img{*/
+  /*          width:0.72rem;*/
+  /*          height:0.56rem;*/
+  /*          margin-top:0.76rem;*/
+  /*          margin-bottom:0.1rem;*/
+  /*      }*/
+  /*      .typeList li p{*/
+  /*          color:#494949;*/
+  /*      }*/
+        .iconSize>p{
+        	font-size: 0.32rem;
+        	margin-left:0.3rem;
+        	
+        }
+        .iconSize ul li{
+        	float: left;
+        	width:33%;
+        	border-top:1px solid #F2F2F2;
+        	border-bottom:1px solid #F2F2F2;
+        	border-right:1px solid #F2F2F2;
+        	text-align: center;
+        }
+         .iconSize ul li:nth-child(3n+3){
+         	border-right:none;
+         }
+        .iconSize ul li img{
+        	/*width:1.22rem;*/
+        	height:1.4rem;
+        	margin-top:0.3rem;
+        }
+        .iconSize ul li p{
+        	color:#5E5E5E;
+        	font-size: 0.28rem;
+        	margin-bottom: 0.2rem;
+        }
+	</style>
+</head>
+
+<body style="background:#fff;">
+<!-- 积分部分 -->
+<div class="top">
+	<img  src="{CBL_MANGTU_RES}/home/images/juxing.png" alt="" style="width:100%;height:2.8rem;"/>
+	<div id="">
+		<img  src="{$user['avatar']}" alt="用户头像" style="width:1.2rem;height:1.2rem;position: absolute;left:0.4rem;top:0.4rem;border-radius:0.6rem;"/>
+		<p  style="position: absolute;left:1.9rem;top:0.56rem;font-size:0.32rem;">{$userName}</p>
+		<p  style="position: absolute;left:1.9rem;top:1.12rem;font-size: 0.24rem;"><span>积分：</span><span>100</span></p>
+		<p  style="position: absolute;left:0.4rem;top:1.8rem;"><span>读者卡卡号：</span><span>11024111202</span></p>
+		<p  style="position: absolute;left:0.4rem;top:2.22rem;"><span>读者证类型：</span><span>阅览证/借阅证</span></p>
+		{if $IsTodaySignIn==true}
+		<button  style="position: absolute;right:0.36rem;top:1.14rem;width:1.6rem;height:0.6rem;background:#fff;border:1px solid #fff;border-radius:0.6rem;color:#0060FF;font-size:0.32rem;" id="qiandao">已签到</button>
+		{else}
+		<button  style="position: absolute;right:0.36rem;top:1.14rem;width:1.6rem;height:0.6rem;background:#fff;border:1px solid #fff;border-radius:0.6rem;color:#0060FF;font-size:0.32rem;" onclick="qiandao();" id="qiandao">签到</button>
+		{/if}	</div>
+	
+</div>
+
+<!-- 内容部分 -->
+<div class="contont " style="position: relative;">
+	<!-- 搜索框 -->
+<!--	<form    title="搜索框" action="." style="padding: 0 0.3rem;padding-top:0.2rem;">-->
+<!--		<input type="search" id="search"  class="changecolor search11"  placeholder="搜索您感兴趣的图书">-->
+<!--			   <input type="text" style="display:none;"/>-->
+<!--		<img src="{CBL_MANGTU_RES}/home/images/ic_search@2x.png" alt=""-->
+<!--			 style="width: 0.42rem;height: 0.4rem;position: absolute; top: 0.4rem;right: 0.7rem;" class="souimg" onclick="searchbooks();">-->
+<!--	</form>-->
+	<div class="header">
+
+		<div style="display: flex;position: relative;z-index: 102;background: #fff;">
+			<div style=" align-items: center;width: 90%;order: 2; margin: 0.2rem 0 0 0;">
+				<div style=" background: #f0f0f0;border-radius: 3px;position: relative;width: 6.88rem;margin: 0 auto;height: 0.8rem;margin-left: 0.3rem;">
+					<img src="{CBL_MANGTU_RES}/home/images/soushuo.png" alt="搜索" style="width:0.28rem;height: 0.28rem;position: absolute;left: 0.22rem;top: 0.28rem;">
+					<!-- <i class="icon icon-search" ></i> -->
+					<form    title="搜索框" action="." style="">
+						<input type="search"  placeholder="馆藏检索" style="background: none;border: none;text-align: left;height: 0.8rem;width: 68%;font-size:0.25rem;border-radius: 22px;position: absolute;left: 0.6rem;" id="search">
+						<input type="text" style="display:none;"/>
+						<div style="text-align:center;float:right;height: 0.8rem;line-height: 0.8rem;border-radius:0 3px 3px 0;;background:#5B61EB;color:#fff;border:1px solid #5B61EB;width:1.34rem;" onclick="searchbooks();">搜索</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 分类 -->
+	
+	<div class="iconSize">
+			<p style="padding-bottom: 0.2rem;padding-top:0.4rem;">电子资源</p>
+		<ul class="clearfix">
+			{loop $dianziList $item}
+			<li onclick="jumpurl(this)" data-href="{php echo $this->createMobileUrl($item['controller'],array('type'=>$item['action']));}">
+				<img class="" src="{$_W['attachurl']}{$item['menuimage']}" alt="" />
+				<p>{$item['menuname']}</p>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="iconSize">
+			<p style="padding-bottom: 0.2rem;padding-top:0.4rem;">实体资源</p>
+		<ul class="clearfix">
+			{loop $shitiList $item}
+			<li onclick="jumpurl(this)" data-href="{php echo $this->createMobileUrl($item['controller'],array('type'=>$item['action']));}">
+				<img class="" src="{$_W['attachurl']}{$item['menuimage']}" alt="" />
+				<p>{$item['menuname']}</p>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="iconSize">
+			<p style="padding-bottom: 0.2rem;padding-top:0.4rem;">馆内服务</p>
+		<ul class="clearfix">
+			{loop $guancangList $item}
+			{if $item['isLink']==0}
+			<li onclick="jumpurl(this)" data-href="{php echo $this->createMobileUrl($item['controller'],array('type'=>$item['action']));}">
+				<img class="" src="{$_W['attachurl']}{$item['menuimage']}" alt="" />
+				<p>{$item['menuname']}</p>
+			</li>
+			{else}
+			<li onclick="jumpurl(this)" data-href="{$item['menuLink']}">
+				<img class="" src="{$_W['attachurl']}{$item['menuimage']}" alt="" />
+				<p>{$item['menuname']}</p>
+			</li>
+			{/if}
+
+			{/loop}
+		</ul>
+	</div>
+	
+</div>
+
+ <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;width: 100%; background: #fff;z-index:999;display:none;">
+	    <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png"
+			 style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+ </div>
+<script src="{CBL_MANGTU_RES}/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="{CBL_MANGTU_RES}/home/js/footerque.js"></script>
+<script type="text/javascript" src="{CBL_MANGTU_RES}/js/jquery.cookie.js"></script>
+<script>
+	var qiandao_url="{php echo $this->createMobileUrl('user',array('type'=>'addintegral'));}"
+	var searchbooks_url = "{php echo $this->createMobileUrl('index',array('type'=>'searchbooks'));}"
+		window.onload=function(){
+			var param = '{$sizeSet}'; 
+			console.log(param)
+			var colorParam ="{$textColor}"
+		  	if(colorParam=='黑白对比度'){
+		  		 $('body').css('background-color', '#000');
+		  		 $('.iconSize ul li p,.iconSize p').css('color', '#F7F7F7');
+		  	}
+		  	if(colorParam=='白蓝对比度'){
+		  		 $('body').css('background-color', '#fff');
+		  		 $('.iconSize ul li p,.iconSize p').css('color', '#0915F5');
+		  	}
+		  	if(colorParam=='蓝黄对比度'){
+		  		 $('body').css('background-color', '#0915F5');
+		  		 $('.iconSize ul li p,.iconSize p').css('color', '#FFFE54');
+		  	}
+		  	if(colorParam=='白红对比度'){
+		  		 $('body').css('background-color', '#fff');
+		  		 $('.iconSize ul li p,.iconSize p').css('color', '#C42A29');
+		  	}
+		  	if(colorParam=='白黑对比度'){
+		  		console.log('你回复了默认')
+		  	}
+		  	if(colorParam=='黄黑对比度'){
+		  		 $('body').css('background-color', '#FFFE54');
+		  		 $('.iconSize ul li p,.iconSize p').css('color', '#000000');
+		  	}
+		  		
+		  	if(param==1){
+			$('.changefont').click()
+			 
+		  	}
+        
+		}
+		     
+	    // //获取img
+     //   var img = document.querySelectorAll(".top img"); //通过选择器，获取img        
+     //   var li = document.querySelectorAll(" li");
+     //   var div = document.querySelectorAll('.top div');
+     //   // console.log(img);
+     //   var index = 0; //定义一个初始值为0的变量
+     //   function scrol() {
+
+     //       //使用display实现
+     //       //隐藏
+     //       for (var i = 0; i < img.length; i++) {
+     //           //设置让三个隐藏，一个显示
+     //           img[i].style.display = "none"; //把所有的img隐藏
+     //           li[i].style.backgroundColor = ""; //分页颜色全都不显示
+     //       }
+     //       img[index].style.display = "block"; //让一个显示
+     //       li[index].style.backgroundColor = "#0f90f7"; //一个分页显示颜色
+     //       index++; //自增
+     //       if (index == div.length) {
+     //           index = 0;
+     //       }
+     //   }
+     //   var timer = setInterval(scrol, 2000); //设置定时器
+     //   function mOver(index) { //设置鼠标移动在分页上的函数
+     //       clearInterval(timer); //清除定时器
+     //       for (var i = 0; i < div.length; i++) { //循环实现分页颜色的变化
+     //           div[i].style.zIndex = "1"; //让所有图片隐藏
+     //           li[i].style.backgroundColor = ""; //分页颜色失效
+     //       }
+     //       div[index].style.zIndex = "9"; //当前选中分页显示
+     //   }
+
+     //   function mOut() { //鼠标移出让它继续轮播
+     //       timer = setInterval(scrol, 500);
+     //   }
+     //   for (var i = 0; i < div.length; i++) {
+     //       li[i].onmouseover = function () {
+     //           mOver(i);
+     //       }
+     //       li[i].onmouseout = function () {
+     //           mOut(i);
+     //       }
+     //   }
+
+
+		function jumpurl(obj){
+			var href = $(obj).attr('data-href');
+			console.log(href);
+			window.location.href=href;
+		}
+
+			 var fontSize1 = ['0.36rem', '0.28rem']
+			 var indexs = 0;
+			$(".changefont").on("click", function () {
+			console.log('我点击了')
+	        $(".iconSize ul li p,.top p").css("font-size",'0.36rem');
+	        indexs++;
+	        if (indexs == fontSize1.length) indexs = 0;
+	    	});
+		
+	 
+	   function searchbooks(){
+		   var searchName = $("#search").val();
+		   console.log(searchName)
+		   if(searchName==''){
+		   	console.log('填写搜索目标');return false;
+		   }
+		   window.location.href=searchbooks_url+"&title="+searchName;
+	   }
+	    
+			//搜索
+		$("#search").on('keypress',function(e) {
+		    var keycode = e.keyCode;
+		    var searchName = $(this).val();
+		    if(keycode=='13') {
+		        e.preventDefault();  
+		        //请求搜索接口
+		        alert('en')
+		    }
+		});
+		$('#search').on('input',function(){
+	      if(!($('#search').val() =='')){
+	        $(".souimg").hide();
+	      }else{
+	        $(".souimg").show();
+	      }
+	    });
+		 
+		function qiandao() {
+			$.ajax({
+				type : 'post',
+				url : qiandao_url,
+				data:{},
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if(data.code == 0){
+						$('#qiandao').html('已签到');
+					}
+				},
+			});
+		}
+</script>
+</body>
+
+</html>

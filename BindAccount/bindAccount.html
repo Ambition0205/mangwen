@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>账号绑定</title>
+	<link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+	<script>
+		function resetFontSize() {
+			var baseFontSize = 100
+			var designWidth = 750
+			var width = window.innerWidth
+			var currentFontSize = (width / designWidth) * baseFontSize
+			document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+		}
+		window.onresize = function () {
+			resetFontSize()
+		};
+		resetFontSize()
+	</script>
+	<style>
+
+		.tximg{
+			width:100%;
+			height:3.6rem;
+
+		}
+		.qiandoa{
+			width:1.24rem;
+			height:1.24rem;
+			background:#FF4267;
+			border-radius: 50%;
+			line-height:1.24rem;
+			text-align: center;
+			color:#fff;
+			margin-top: 0.3rem;
+			margin-right: 0.9rem;
+		}
+	</style>
+</head>
+
+<body style="background:#fff;">
+<div class="box">
+	<img src="{CBL_MANGTU_RES}/home/images/bannerMT.png" alt="" class="tximg">
+	<div style="text-align:center;margin-top:0.2rem;">
+		<h3 style="font-size: 0.32rem;color:#333;margin-bottom:0.4rem;">读者登录</h3>
+		<form action="{php echo $this->createMobileUrl('login',array('type'=>'checklogin'));}" method="post" enctype="multipart/form-data"  style="text-align:center;" name="form1" id="signForm">
+			
+			<div style="margin-right:0.2rem;">
+				<label class="label1" for="AccountNum">账号</label>
+				<input class="input1" type="text" name="account" id="AccountNum" placeholder="请输入手机号/用户名/读者证号/残疾人证号"   style="border:1px solid #0060FF;padding:0.35rem 0.2rem;border-radius: 4px;width:5.14rem;margin-bottom:0.2rem;height:0.4rem;"><br>
+				<div id="result_AccountNum" style="text-align:left;padding-left: 1.3rem;"></div>
+	
+				<label class="label1" for="password">密码</label>
+				<input class="input1" type="password" name="password" id="password" placeholder="请输入密码"   style="border:1px solid #0060FF;padding:0.35rem 0.2rem;border-radius: 4px;width:5.14rem;margin-bottom:0.2rem;height:0.4rem;margin-top:0.2rem;"><br>
+				<div id="result_password" style="text-align:left;padding-left: 1.3rem;"></div>
+			</div>
+
+			<div style="text-align:center;">
+				<input type="button" value="绑定"  onclick="clickLoginBtn();"
+				   style="background: #0060FF;border:1px solid #0060FF;width:5.9rem;height:0.8rem;color:#fff;border-radius: 30px;margin-top: 0.6rem;font-size:0.32rem;"/>
+			</div>
+		</form>
+		<div style="margin-top:0.3rem;">
+			<span style="color:#999;font-size:0.28rem;">注册账号</span>
+			<span style="width:1px;margin: 0 0.4rem;height:0.28rem;margin-top:0.08rem;background:#ccc;display:inline-block;"></span>
+			<span style="color:#999;font-size:0.28rem;">忘记密码</span>
+		</div>
+
+	</div>
+
+</div>
+<script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+
+<script>
+		var flas = false; //标识符    
+            //账号验证  
+            $("#AccountNum").blur(function() {
+                //取出账号值  
+                var name = $("#AccountNum").val();
+                var state1 = $("#result_AccountNum");
+                if(name == null || name == "") {
+                    state1.html("不能为空")
+                    state1.css("color","red")
+                    flas = false;
+                    return
+                } else {
+                    flas = true;
+                    state1.html("")
+                }
+                
+            })
+            var flas1 = false; //标识符    
+			 //秘码验证  
+            $("#password").blur(function() {
+                //取出账号值  
+                var name2 = $("#password").val();
+                var state2 = $("#result_password");
+                if(name2 == null || name2 == "") {
+                    state2.html("不能为空")
+                    state2.css("color","red")
+                    flas1 = false;
+                    return
+                } else {
+                    flas1 = true;
+                    state2.html("")
+                }
+                
+            })		
+	// 点击登录按钮
+	function clickLoginBtn(){
+		
+        if(flas==true&&flas1==true){
+        	/*提交表单*/
+        	$("#signForm").submit();
+
+			return true;
+		}else{
+		    //阻止表单提交
+			return false;
+		}
+	
+			
+		
+		// var number = $("#AccountNum").val();
+		// var pwd = $("#password").val();
+		// var reg ='^([1-9][0-9]*)$';
+		// var reg = new RegExp(reg);
+		// if(number==''){$("#result_AccountNum").html("请输入账号!");
+		// 	$("#result_AccountNum").css("color","red");
+		// 	return false;
+		// }
+		// if(pwd==''){$("#result_password").html("请输入密码!");$("#result_password").css("color","red");return false;}
+	
+      
+	}
+
+</script>
+</body>
+
+</html>

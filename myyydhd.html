@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我预约的活动</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="./dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .boxs{
+            background: #fff;
+            width: 100%;
+            height: 4.16rem;
+            margin-bottom: 0.2rem;
+            padding:0 0.3rem;
+            padding-top:0.3rem;
+            position: relative;
+        }
+        .boxs>h4{
+            font-size: 0.36rem;
+            color:#333;
+        }
+        .boxs .cont1{
+            color:#808080;
+            font-size: 0.28rem;
+            padding-top:0.16rem;
+        }
+        
+        .boxs .times,.boxs .address{
+            color:#4A90E2;
+            font-size: 0.28rem;
+            
+        }
+        .boxs button{
+            width:5.12rem;
+            height: 0.68rem;
+            color: #fff;
+            font-size: 0.28rem;
+           
+        }
+        .boxs .btn1{
+            background: #0060FF;
+            border: 1px solid #0060FF;
+            border-radius: 0.3rem;
+        }
+        .boxs .btn2{
+            background: #DE1212;
+            border: 1px solid #DE1212;
+            border-radius: 0.3rem;
+        }
+    </style>
+</head>
+
+<body style="background:#F2F2F2">
+<div style="display: flex;flex-direction: column;padding: 0 0.3rem;padding-top: 0.3rem;">
+    <div class="boxs">
+        <h4>八月读书角活动</h4>
+        <div class="cont1">
+            欢迎参加八月读书角活动，您可以通过中国盲人图书馆微信服务号接收相关服务推送消息。
+        </div>
+        <div class="times">2019-07-25至2019-07-29 全天</div>
+        <div class="address">北京市大兴区东环路7号院</div>
+        <div style="position: absolute;bottom: 0.48rem; left: 0.9rem;">
+            <button class="btn1">立即预约</button>
+            <!-- <button class="btn2">取消预约</button> -->
+        </div>
+    </div>
+    <div class="boxs">
+            <h4>八月读书角活动</h4>
+            <div class="cont1"> 
+                欢迎参加八月读书角活动，您可以通过中国盲人图书馆微信服务号接收相关服务推送消息。
+            </div>
+            <div class="times">2019-07-25至2019-07-29 全天</div>
+            <div class="address">北京市大兴区东环路7号院</div>
+            <div style="position: absolute;bottom: 0.48rem; left: 0.9rem; ">
+                <!-- <button class="btn1">查看详情</button> -->
+                <button class="btn2">取消预约</button>
+            </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+
+</body>
+</html>

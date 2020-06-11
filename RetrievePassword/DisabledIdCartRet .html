@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二代残疾人证找回</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+
+        .error{
+            font-size: 0.24rem;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div3">
+        <div class="div3_1" >
+            <h4 style="height:0.8rem;line-height:0.8rem;background:#F2F2F2;font-size: 0.28rem;padding-left:0.3rem;text-align:left;margin-bottom:0.2rem;margin-right:0;">找回密码</h4>
+            <form action="test1.html" method="post" enctype="multipart/form-data"  style="text-align:right;margin-right:0.2rem;" name="form1" onsubmit="return checkForm()">
+        
+        
+            <label class="label1" for="ReaderID">二代残疾人证:</label>
+            <input class="input1" type="text" name="ReaderID" id="ReaderID" placeholder="请输入读者证号" onfocus="onfocus_ReaderID()" onblur="onblur_ReaderID" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_ReaderID" class="error" style="text-align:center;"></div>
+
+            <label class="label1" for="name">姓名:</label>
+            <input class="input1" type="text" name="name" id="name" placeholder="请输入读姓名" onfocus="onfocus_name()" onblur="onblur_name" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_name" class="error" style="text-align:center;"></div>
+
+            <input type="submit" value="下一步" style="background: #0060FF;width:6.2rem;height:0.8rem;color:#fff;border-radius: 30px;font-size:0.28px;position: fixed;bottom: 0.2rem;left: 0.8rem;"/>
+        </form>
+   
+            
+        </div>
+    </div>
+    <script>
+        //读者证号
+        function onfocus_ReaderID(){
+        /*获取result_name的元素对象*/
+        var divObj=document.getElementById("result_ReaderID");
+                /*写入提示信息*/
+        divObj.innerHTML="请输入您的读者证号:";
+                divObj.style.color="#ccc";
+        }
+            //失去焦点:当光标离开某个文本框时触发
+        function onblur_ReaderID(){
+                /*获取name=userName和id=result_nameresult_username的元素对象*/
+        var inputObj=document.form1.ReaderID;
+                var divObj=document.getElementById("result_ReaderID");
+                /*用户名验证*/
+        if(document.form1.ReaderID.value=""){
+                    divObj.innerHTML="请输入您的读者证号";
+                    divObj.style.color="red";
+                    return false;
+                }else if(document.form1.ReaderID.value.length<5||document.form1.ReaderID.value.length>20){
+                    divObj.innerHTML="读者证号必须是数字";
+                    divObj.style.color="red";
+                    return false;
+                }else{
+                    divObj.innerHTML="ok";
+                    return true;
+                }
+        }
+        //姓名
+      function onfocus_name(){
+        /*获取result_name的元素对象*/
+        var divObj=document.getElementById("result_name");
+                /*写入提示信息*/
+        divObj.innerHTML="请输入您的姓名:";
+                divObj.style.color="#ccc";
+        }
+            //失去焦点:当光标离开某个文本框时触发
+        function onblur_name(){
+            console.log('验证中')
+                /*获取name=userName和id=result_nameresult_username的元素对象*/
+        var inputObj=document.form1.name;
+                var divObj=document.getElementById("result_name");
+                console.log(divObj)
+                /*用户名验证*/
+        if(document.form1.name.value=""){
+                    divObj.innerHTML="对不起,姓名不能为空";
+                    divObj.style.color="red";
+                    return false;
+                }else if(document.form1.name.value.length<5||document.form1.name.value.length>20){
+                    divObj.innerHTML="请输入您的姓名";
+                    divObj.style.color="red";
+                    return false;
+                }else{
+                    divObj.innerHTML="ok";
+                    return true;
+                }
+        }
+        
+        function checkForm(){
+            var flag_ReaderID=onblur_ReaderID();
+            var flag_userPwd=onblur_password();
+            if(flag_userName&&flag_userPwd){
+                /*提交表单*/
+                return true
+            }else{
+                            //阻止表单提交
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

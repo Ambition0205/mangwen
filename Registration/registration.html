@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en" style="font-size: 100px;">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .edcjrz, .dzzzc {
+            text-align: center;
+        }
+        .edcjrz img{
+            width:6.84rem;
+            height:3.88rem;
+            margin-top:0.76rem;
+            margin-bottom: 0.28rem;
+        }
+        .dzzzc img{
+            width:6.8rem;
+            height:3.88rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="edcjrz">
+        <img src="../dist/images/edcjzzc.png" alt="">
+    </div>
+    <div class="dzzzc">
+        <img src="../dist/images/dzzzc.png" alt="">
+    </div>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;bottom:0;width: 100%; background: #fff;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+        <img class="changefbgcolor" src="../dist/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.46rem;"/>
+        <img class="changefont" src="../dist/images/changebg.png" style="width:0.66rem;height:0.66rem;position: absolute;bottom:0.2rem;right:0.4rem;"/>
+    </div> 
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+        
+        var colors=['#000000','#FFFFFF','#0915F5','#FFFFFF','#FFFE54','#F7F7F7'];
+        var fontColor=['#F7F7F7','#0915F5',"#FFFE54","#C42A29","#000000",'#333333']
+        var fontSize=['24px','36px','48px','']
+        var idx=0;
+        var index=0;
+        $('.changefbgcolor').on('click',function(){
+            $('body').css('background-color',colors[idx]);
+            console.log(colors[idx])
+            idx++;
+            if(idx==colors.length)idx=0;
+    
+            $('body').css('color',fontColor[index]);
+            console.log(fontColor[index])
+            index++;
+            if(index==fontColor.length)index=0;
+        });
+        $('.changefont').on('click',function(){
+            $('body').css('font-size',fontSize[idx]);
+            console.log(fontSize[idx])
+            idx++;
+            if(idx==fontSize.length)idx=0;
+        });
+    });
+    </script>
+    <!--改变背景颜色字体 字号的js  -->
+<script type="text/javascript" src="../dist/js/changeBgcolor.js"></script>
+</body>
+
+</html>
+

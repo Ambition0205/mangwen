@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <!-- <link href="{CBL_MANGTU_RES}/home/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{CBL_MANGTU_RES}/home/css/popup.css"/> -->
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #ckzxform{
+            margin:0.24rem 0 0.28rem 0;
+        }
+		input[type=button] {
+		   -webkit-appearance: none;
+		}
+    </style>
+</head>
+
+<body style="background:#F5F5F5;">
+	<div style="margin-left:0.24rem;margin-right:0.28rem;padding-top:0.3rem;">
+   
+    
+    
+    <form action="" method="post" id="ckzxform">
+        <textarea cols="50" rows="10" placeholder="请输入内容.." style="width:7rem;font-size:0.28rem;background:#fff;border:none;    border-radius: 0.06rem;padding: 0.4rem 0.3rem;" id="content"></textarea>
+        <input type="button" value="发布"  style="width:7rem;height:0.8rem;line-height:0.8rem;color:#fff;font-size:0.32rem;background:#DE1212;border-radius: 0.6rem;border:1px solid #DE1212;" onclick="addconsult()"/>
+    </form>
+</div>
+	<!-- <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;width: 100%; background: #fff;z-index:999" class="footer">
+       <img src="{CBL_MANGTU_RES}/home/images/fanhui.png" style="width: 0.44rem;height: 0.36rem;margin-left: 0.3rem;margin-top: 0.3rem;" onclick="previousPage();"  alt="返回上一级"  role="button"/>
+		<img src="{CBL_MANGTU_RES}/home/images/shouye.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:2.44rem;" onclick="goindex();"  alt="返回首页"  role="button"/>
+        <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png"
+            style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.46rem;" alt="切换字体大小" role="button"/>
+        <img class="changefbgcolor" src="{CBL_MANGTU_RES}/home/images/changebg.png"
+            style="width:0.66rem;height:0.66rem;position: absolute;bottom:0.2rem;right:0.44rem;" alt="改变字体颜色和背景颜色" role="button"/>
+    </div> -->
+</body>
+<!-- <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+<script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/popup.js"></script>
+<script src="{CBL_MANGTU_RES}/home/js/footerque.js"></script> -->
+<!-- <script>
+    var Popup = new Popup();
+    var addconsult_url="{php echo $this->createMobileUrl('consult',array('type'=>'add'));}";
+    var index_url="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+    //上一页
+     function previousPage(){
+        //content = JSON.parse(Content);
+        window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+    }
+    //返回首页
+    function goindex(){
+        //content = JSON.parse(Content);
+        window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+    }
+    function addconsult(){
+        var content=$("#content").val();
+        // var email = $("#email").val();
+        // var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        // if(reg.test(email)==false){
+        //     Popup.toast('邮箱格式不正确!',1);return false;
+        // }
+            // console.log(email);
+        $.ajax({
+            url:addconsult_url,
+            type:'POST',
+            data:{content:content,email:email},
+            dataType:'json',
+            success:function(data){
+                //data = JSON.parse(data);
+                console.log(data);
+                if(data.code == 0){
+                    Popup.toast('反馈成功!',1);
+                    setTimeout('window.location.href=index_url',1000);
+                }else{
+                    Popup.toast('反馈失败!',1);
+                }
+            },
+        });
+    }
+    
+    $(document).ready(function () {
+        var colors = ['#000000', '#FFFFFF', '#0915F5', '#FFFFFF', '#FFFE54', ''];
+    	var fontColor= ['#F7F7F7', '#0915F5', "#FFFE54", "#C42A29", "#000000", '']
+        var fontSize = ['0.46rem', '0.28rem']
+        var fontSize1 = ['0.28rem', '0.24rem']
+        var idx = 0;
+        var idx1 = 0;
+        var index = 0;
+        $('.changefbgcolor').on('click', function () {
+            $('body').css('background-color', colors[idx]);
+            idx++;
+            if (idx == colors.length) idx = 0;
+            $('.fontColor').css('color' ,fontColor[idx1]);
+            
+            idx1++;
+            if (idx1 == fontColor.length) idx1 = 0;
+        });
+        $('.changefont').on('click', function () {
+            $('.fontSize').css('font-size', fontSize[index]);
+            index++;
+            if (index == fontSize.length) index = 0;
+        });
+ 
+    });
+</script> -->
+</html>

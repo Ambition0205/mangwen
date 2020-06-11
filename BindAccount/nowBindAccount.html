@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;background:#fff;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>账号绑定-当前绑定账号</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+
+        .error{
+            font-size: 0.24rem;
+            font-weight: 400;
+           
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div3" style="background:#fff;">
+        <div class="div3_1" >
+           
+            <form action="test1.html" method="post" enctype="multipart/form-data"  style="margin-top:20px;margin-left:20px;" name="form1" onsubmit="return checkForm()">
+        
+        
+            <dix>
+                <span style="font-size:0.28rem;">当前绑定账号:</span><span style="font-size:0.28rem;">18810617890</span>
+            </dix>
+            
+
+            <input type="submit" value="绑定至当前微信账号" style="background: #D9001B;border:1px solid #D9001B;width:6.2rem;height:0.8rem;color:#fff;border-radius: 30px;margin-top: 60px;font-size:0.32rem;margin-left:16px;"/>
+        </form>
+        <div style="margin: 0.4rem;background:#F8F8F8;padding:0.24rem;color:#999999;font-size:0.28rem;margin-top:0.74rem;">
+            <p style="color:#666666;padding-bottom:0.16rem;"> 小贴士:</p>
+            绑定微信账号后，您可以通过中国盲人图书馆微信服务号接收相关服务推送消息。
+        </div>
+            
+        </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+
+</html>

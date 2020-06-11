@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预约成功</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+       .edcjrzzhmi{
+           margin-top:0.78rem;
+           margin-bottom:0.38rem;
+       }
+    </style>
+</head>
+
+<body style="margin:0.2rem;background: #fff;">
+    <div style="text-align: center;">   
+        <div>
+            <img src="../dist/images/yycgimg.png" alt="" style="width:1.02rem;height:1.02rem;margin-top:0.58rem;">
+            <p style="font-size: 0.36rem;color:#333;margin-top:0.44rem;">预约成功</p>
+        </div> 
+        <div class="edcjrzzhmi">
+            <img src="../dist/images/lglqimg.png" alt="" style=" width:6.1rem; height:3.3rem;">
+        </div>
+        <div class="dzzzhmi">
+            <img src="../dist/images/ghyjimg.png" alt="" style=" width:6.1rem; height:3.3rem;">
+        </div>
+    </div>
+  
+
+</body>
+
+</html>

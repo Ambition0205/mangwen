@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <title>正在借阅</title>
+    <script>
+        function resetFontSize() { 
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+       
+       .boxtwo li{
+        position: relative;
+        color:#0C0C0C;
+        height: 4.06rem;
+        margin:0.26rem;
+        background: #fff;
+        border-radius: 0.1rem;
+       }
+       .tximg{
+            width:1.6rem;
+            height:2.2rem;
+            margin:0.2rem;
+            margin-right:0.3rem;
+
+        }
+        .boxtwo li .hsbtn,.boxtwo li .xjbtn{
+            width:2.66rem;
+            height: 0.76rem;
+            border-radius: 0.5rem;
+
+        }
+        .boxtwo li .hsbtn{ 
+            border:1px #DE1212 solid;
+            color:#DE1212;
+            background: #fff;
+            font-size:0.24rem;
+        }
+        .boxtwo li .xjbtn{
+            color:#fff;
+            background: #DE1212;
+            border:1px #DE1212 solid;
+            font-size:0.24rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul class="boxtwo">
+            <li >
+                <div class="clearfix" style="margin-bottom:12px;">
+                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                    <div style="color:#333;font-size:0.24rem;">应还日期：<span>2019年07月22日</span></div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="hsbtn">还书</button>
+                    <button class="xjbtn">续借</button>
+                </div>
+            </li>
+            <li >
+                <div class="clearfix" style="margin-bottom:12px;">
+                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                    <div style="color:#333;font-size:0.24rem;">应还日期：<span>2019年07月22日</span></div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="hsbtn">还书</button>
+                    <button class="xjbtn">续借</button>
+                </div>
+            </li>
+        </ul>
+    </div>    
+</body>
+
+</html>

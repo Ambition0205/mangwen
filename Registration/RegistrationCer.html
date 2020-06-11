@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图者证号注册</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+
+        .error{
+            font-size: 0.24rem;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div3">
+        <div class="div3_1" >
+            <h4 style="height:0.8rem;line-height:0.8rem;background:#F2F2F2;font-size: 0.28rem;padding-left:0.3rem;text-align:left;margin-bottom:0.2rem;margin-right:0;">基本信息 <span style="color:#0060FF;font-size: 0.28rem;">（必填）</span> </h4>
+            <form action="test1.html" method="post" enctype="multipart/form-data"  style="text-align:right;margin-right:0.2rem;" name="form1" onsubmit="return checkForm()">
+        
+        
+            <label class="label1" for="ReaderID">读者证号:</label>
+            <input class="input1" type="text" name="ReaderID" id="ReaderID" placeholder="请输入读者证号" onfocus="onfocus_ReaderID()" onblur="onblur_ReaderID" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_ReaderID" class="error" style="text-align:center;"></div>
+
+            <label class="label1" for="name">姓名:</label>
+            <input class="input1" type="text" name="name" id="name" placeholder="请输入读姓名" onfocus="onfocus_name()" onblur="onblur_name" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_name" class="error" style="text-align:center;"></div>
+
+            <label class="label1" for="username">用户名:</label>
+            <input class="input1" type="text" name="username" id="username" placeholder="请输入用户名" onfocus="onfocus_userName()" onblur="onblur_userName" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_username" class="error" style="text-align:center;"></div>
+
+            <label class="label1" for="password">密码</label>
+            <input class="input1" type="password" name="password" id="password" placeholder="请输入密码"   onfocus="onfocus_password()" onblur="onblur_password" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <div id="result_password" class="error" style="text-align:center;"></div>
+
+            <label class="label1" for="ConfirmPas">确认密码</label>
+            <input class="input1" type="password" name="ConfirmPas" id="ConfirmPas" placeholder="请输入密码"  onfocus="onfocus_ConfirmPas()" onblur="onblur_ConfirmPas" style="border:1px solid #0060FF;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;>"</br>
+            <div id="result_ConfirmPas" class="error" style="text-align:center;" ></div>
+
+
+            <h4 style="height:0.8rem;line-height:0.8rem;background:#F2F2F2;font-size: 0.28rem;padding-left:0.3rem;text-align:left;margin-bottom:0.2rem; margin-right: -11px;">更多信息 <span style="color:#0060FF;font-size: 0.28rem;">（选填）</span> </h4>
+
+
+            <label class="label1" for="ContactNum">联系电话:</label>
+            <input class="input1" type="text" name="ContactNum" id="ContactNum" placeholder="请输入您的联系电话" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+        
+            <label class="label1" for="email">E-mail:</label>
+            <input class="input1" type="text" name="email" id="email" placeholder="请输入您的邮箱地址" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <label class="label1" for="UnitName">单位名称:</label>
+            <input class="input1" type="text" name="UnitName" id="UnitName" placeholder="请输入您的单位名称" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+
+            <label class="label1" for="zipCode">邮编：</label>
+            <input class="input1" type="number" name="zipCode" id="zipCode" placeholder="请输入您的所在地区邮编" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+
+
+            <label class="label1" for="address">联系地址</label>
+            <input class="input1" type="text" name="address" id="address" placeholder="请输入您的联系地址" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;height:0.4rem;"></br>
+            <label class="label1" for="beizhu">备注：</label> 
+            <textarea name="textarea" cols="200" rows="5" style="border:1px solid #CCC;padding:5px;border-radius: 4px;width:5.02rem;margin-bottom:0.2rem;"> 请输入您的备注(200字以内) </textarea> 
+
+
+
+            <input type="submit" value="立即注册" style="background: #0060FF;width:6.2rem;height:0.8rem;color:#fff;border-radius: 30px;font-size:0.28px;margin-top:0.8rem;margin-right:0.4rem;"/>
+        </form>
+   
+            
+        </div>
+    </div>
+    <script>
+        //读者证号
+        function onfocus_ReaderID(){
+        /*获取result_name的元素对象*/
+        var divObj=document.getElementById("result_ReaderID");
+                /*写入提示信息*/
+        divObj.innerHTML="请输入您的读者证号:";
+                divObj.style.color="#ccc";
+        }
+            //失去焦点:当光标离开某个文本框时触发
+        function onblur_ReaderID(){
+                /*获取name=userName和id=result_nameresult_username的元素对象*/
+        var inputObj=document.form1.ReaderID;
+                var divObj=document.getElementById("result_ReaderID");
+                /*用户名验证*/
+        if(document.form1.ReaderID.value=""){
+                    divObj.innerHTML="请输入您的读者证号";
+                    divObj.style.color="red";
+                    return false;
+                }else if(document.form1.ReaderID.value.length<5||document.form1.ReaderID.value.length>20){
+                    divObj.innerHTML="读者证号必须是数字";
+                    divObj.style.color="red";
+                    return false;
+                }else{
+                    divObj.innerHTML="ok";
+                    return true;
+                }
+        }
+        //姓名
+      function onfocus_name(){
+        /*获取result_name的元素对象*/
+        var divObj=document.getElementById("result_name");
+                /*写入提示信息*/
+        divObj.innerHTML="请输入您的姓名:";
+                divObj.style.color="#ccc";
+        }
+            //失去焦点:当光标离开某个文本框时触发
+        function onblur_name(){
+            console.log('验证中')
+                /*获取name=userName和id=result_nameresult_username的元素对象*/
+        var inputObj=document.form1.name;
+                var divObj=document.getElementById("result_name");
+                console.log(divObj)
+                /*用户名验证*/
+        if(document.form1.name.value=""){
+                    divObj.innerHTML="对不起,姓名不能为空";
+                    divObj.style.color="red";
+                    return false;
+                }else if(document.form1.name.value.length<5||document.form1.name.value.length>20){
+                    divObj.innerHTML="请输入您的姓名";
+                    divObj.style.color="red";
+                    return false;
+                }else{
+                    divObj.innerHTML="ok";
+                    return true;
+                }
+        }
+        //用户名
+        function onfocus_userJName(){
+        /*获取id=result_username的元素对象*/
+        var divObj=document.getElementById("result_username");
+                /*写入提示信息*/
+        divObj.innerHTML="请输入您的用户名:";
+                divObj.style.color="#ccc";
+            }
+            //失去焦点:当光标离开某个文本框时触发
+        function onblur_userName(){
+            console.log('验证中')
+                /*获取name=userName和id=result_username的元素对象*/
+        var inputObj=document.form1.username;
+                var divObj=document.getElementById("result_username");
+                /*用户名验证*/
+        if(document.form1.username.value=""){
+                    divObj.innerHTML="对不起,用户名不能为空";
+                    divObj.style.color="red";
+                    return false;
+                }else if(document.form1.username.value.length<5||document.form1.username.value.length>20){
+                    divObj.innerHTML="用户名长度必须介于5-20个字符之间";
+                    divObj.style.color="red";
+                    return false;
+                }else{
+                    divObj.innerHTML="ok";
+                    return true;
+                }
+            }
+
+            /*用户密码*/
+            //获取焦点:当光标接入某个文本框时触发
+        function onfocus_password(){
+                /*获取id=result_userPwd的元素对象*/
+            var divObj=document.getElementById("result_password");
+                    /*写入提示信息*/
+            divObj.innerHTML="请输入您的密码:";
+                    divObj.style.color="#ccc";
+                }
+                //失去焦点:当光标离开某个文本框时触发
+            function onblur_password(){
+                    /*获取name=userPwd和id=result_userPwd的元素对象*/
+            var inputObj=document.form1.password;
+                    var divObj=document.getElementById("result_password");
+                    /*用户密码验证*/
+            if(document.form1.password.value=""){
+                        divObj.innerHTML="对不起,密码不能为空";
+                        divObj.style.color="red";
+                        return false;
+                    }else if(document.form1.password.value.length<5||document.form1.password.value.length>20){
+                        divObj.innerHTML="密码由3~20位字母、数字或下划线组成！";
+                        divObj.style.color="red";
+                        return false;
+                    }else{
+                        divObj.innerHTML="ok";
+                        return true;
+                    }
+                }
+                // 确认密码
+                function onfocus_ConfirmPas(){
+                /*获取id=result_userPwd的元素对象*/
+                    var divObj=document.getElementById("result_ConfirmPas");
+                            /*写入提示信息*/
+                    divObj.innerHTML="请输入您的密码:";
+                            divObj.style.color="#ccc";
+                        }
+                        //失去焦点:当光标离开某个文本框时触发
+                    function onblur_ConfirmPas(){
+                            /*获取name=userPwd和id=result_userPwd的元素对象*/
+                    var inputObj=document.form1.ConfirmPas;
+                            var divObj=document.getElementById("result_ConfirmPas");
+                            /*用户密码验证*/
+                    if(document.form1.ConfirmPas.value=""){
+                                divObj.innerHTML="对不起，输入不能为空";
+                                divObj.style.color="red";
+                                return false;
+                            }else if(document.form1.ConfirmPas.value.length<5||document.form1.ConfirmPas.value.length>20){
+                                divObj.innerHTML="两次输入的密码不一致，请确认后再输入！";
+                                divObj.style.color="red";
+                                return false;
+                            }else{
+                                divObj.innerHTML="ok";
+                                return true;
+                            }
+                    }
+        function checkForm(){
+            var flag_userName=onblur_name();
+            var flag_userPwd=onblur_password();
+            var flag_userPwd=onblur_ReaderID();
+            var flag_ConfirmPas=onblur_ConfirmPas();
+            var flag_userName=onblur_userName()
+            if(flag_userName&&flag_userPwd&&flag_userPwd&&flag_ConfirmPas&&flag_userName){
+                /*提交表单*/
+            return true
+                    }else{
+                        //阻止表单提交
+            return false;
+                    }
+        }
+    </script>
+</body>
+
+</html>

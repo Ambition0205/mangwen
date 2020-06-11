@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;background:#F7F7F7" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预约此书</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+       .edcjrzzhmi{
+           margin-top:0.78rem;
+           margin-bottom:0.38rem;
+       }
+    </style>
+</head>
+
+<body style="margin:0.2rem;background: #fff;">
+    <div>
+        <div style="padding:0.64rem 0.3rem 0.62rem 0.32rem;">
+            <img src="../dist/images/book1.png" alt="" style="width:2.7rem;height:2.76rem;float:left;margin-right:0.32rem;">
+            <div>
+                <h4 style="font-size:0.32rem;padding-bottom:0.28rem;color:#131313;">武林盟主</h4>
+                <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;">轩辕小胖</div>
+                <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;">北京中联天盛出版社</div>
+                <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;"></div>
+                <div style="font-size:0.28rem;color:#5E5E5E;">图书售价</div>
+        </div>
+    </div>
+        
+    <div>
+        <p style="font-size: 0.32rem;color:#222;">【借阅须知】</p>
+        <div style="line-height: 0.5rem;font-size: 0.28rem;padding:0.46rem 0.3rem 0 0.32rem;color:#222;">
+            你很嗲很粗的发哦四川德活动迅速把我也超棒的啊传播 v 电饭煲 v 冲突各方的不能吃渡边纯一
+        </<div>
+       
+        <button style="margin-top:0.5rem;margin-bottom:0.62rem;font-size: 0.26rem;background: #0060FF;border:1px solid #0060FF;color:#fff;width:6.46rem;height:1rem;line-height: 1rem;border-radius: 0.6rem;">预约此书(请先确认借阅须知后预约，剩余8秒)</<button>
+    </div> 
+    <script>
+        var wait = 60;
+function time(btns) {
+	var btn = document.getElementById(btns);//获取按钮对象
+    if (wait == 0) {
+        btn.removeAttribute("disabled");
+		btn.value = "获取验证码";
+    	wait = 60;	
+	} else {
+    	btn.setAttribute("disabled", true);
+		btn.value = wait + "秒后重新获取验证码";
+        wait--;
+        setTimeout(function () {
+            time(btns);
+        },
+        1000)
+    }
+}
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+

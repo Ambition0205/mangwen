@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>微盲图-期刊杂志</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .box {
+            margin-top: 20px;
+            margin-left: 0.44rem;
+            
+        }
+
+        #readBtn {
+            font-size: 0.32rem;
+            background: #0060FF;
+            color: #fff;
+            border: 1px solid #0060FF;
+            width: 6.2rem;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            border-radius: 0.6rem;
+            margin-bottom: 0.46rem;
+        }
+        #qtBtn{
+            font-size: 0.32rem;
+            background: #fff;
+            color: #0060FF;
+            border: 1px solid #0060FF;
+            width: 6.2rem;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            border-radius: 0.6rem;
+            margin-bottom: 0.4rem;
+        }
+        #lists{
+            position: relative;
+        }
+        #lists ul {
+            margin-left: 0.3rem;
+            
+
+        }
+        #lists ul li{
+            font-size:0.28rem;
+            height: 0.82rem;
+            line-height: 0.82rem;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div style="margin-right: 0.72rem;">
+            <img src="../dist/images/book1.png" alt="" style="width:2rem;height:2.8rem;float:left;margin-right: 20px;">
+            <div>
+                <h4 style="font-size:0.32rem;padding-bottom:0.1rem;">期刊杂志</h4>
+                <div style="font-size:0.24rem;color:#6EA5FF;padding-bottom:0.26rem;">【日】村上春树 林少华</div>
+                <div style="font-size:0.24rem;color:#999999">
+                    《挪威的森林》是日本作家村上春树于1987年所著的一部长篇爱情小说。故事讲述主角纠缠在情绪不稳定且患有精神疾病的直子和开朗活泼的小林绿子之间，展开了自我成长的旅程。</div>
+            </div>
+        </div>
+        <button id="readBtn">开始阅读/继续阅读</button>
+        <div class="clearfix" style="margin-right: 0.72rem;width:100%;">
+            
+            <span style="font-size:0.32rem;color:#666666;float:left;width:49%;padding-left:23px;">
+                <img src="../dist/images/ic_comment.png" alt="评论"
+                    style="width:0.48rem;height:0.48rem;float:left;margin-right:17px;">
+                    <span>评论</span>
+            </span>
+            <span style="float:left;width:1px;height:15px;margin-top:4px;background:#ccc;display:inline-block;"></span>
+            <span style="font-size:0.32rem;color:#666666;float:left;width:49%;padding-left:54px;" >
+                <img src="../dist/images/shoucangimg.png" alt="收藏" id="shoucImg1"
+                    style="width:0.48rem;height:0.43rem;float:left;margin-right:17px; ">
+                    <span id="shouctext">收藏</span>
+            </span>
+
+        </div>
+        <button id="qtBtn">其他期次</button>
+    </div>
+    <div style="margin-right:0.3rem;margin-left: 0.3rem;">
+    <div class="clearfix">
+        <p style="font-size:0.32rem;color:#333;font-weight: 600;float:left;">章节列表</p>
+        
+    </div>
+        <div id="lists">
+            <span style="color:#BBB;font-size:0.24rem;position: absolute;right:0rem;top:0.2rem;">上次播放</span>
+            <ul>
+                <li style="margin-top: 10px;">
+                        第一章 永远记得我   
+                </li>
+                <li>
+                    第二章 好友之死  
+                </li>
+                <li>
+                    第三章 黑暗中的裸体   
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+    
+
+
+</body>
+<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="../dist/js/aui.js"></script>
+
+</html>

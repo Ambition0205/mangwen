@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>视频课程</title>
+    <!--可无视-->
+    <link rel="stylesheet" type="text/css" href="{CBL_MANGTU_RES}/home/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="{CBL_MANGTU_RES}/home/css/index.css">
+
+    <!--布局样式，意义不大-->
+    <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/demo.css">
+
+    <!--核心样式-->
+    <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/ckin.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        #demo{
+            position: fixed;
+            background: #000;
+            z-index: 999;
+            width: 100%;
+        }
+       
+        #lists ul {
+            margin-left: 0.2rem;
+        }
+
+        #lists ul li {
+            font-size: 0.28rem;
+            height: 0.82rem;
+            line-height: 0.82rem;
+            border-bottom: 1px solid #eee;
+        }
+        #lists ul li.active{
+            color:#62a5fc;
+        }
+        
+    </style>
+
+
+</head>
+<body  onload="onload();">
+	<div style="display: flex;flex-direction: column;height:100%;min-width: 0;">
+		<section class="demo-section demo-section--light" id="demo">
+	    <!-- 视频播放 -->
+		    <div class="container">
+		        <video poster="{CBL_MANGTU_RES}/home/images/videoflashimg.png" src="" data-ckin="default" data-overlay="1"  id="video" title="" class="video" ></video>
+		        <source src="movie.ogg" >
+		    </div>
+		
+	</section>
+	<div style="position: absolute;top:4.4rem;margin:0 0.3rem; width: 92%">
+	    <!-- 视频课程 -->
+	    <div class="spkcbox" >
+	        <h4 style="font-size:0.32rem;margin-bottom: 0.2rem;overflow-x: scroll;white-space: nowrap" class="fontColor fontSize">{$data['Title']}</h4>
+	        <div style="font-size: 0.24rem;color:#999;margin-bottom:0.28rem;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;line-height:18px " class="fontColor font4">{$data['Abstract']}</div>
+	        <div class="clearfix" style="border-bottom:1px solid #eee;height: 34px; line-height: 24px;">
+	            <div style="font-size:0.32rem;color:#666666;float:left;width:49%;padding-left:50px;"  role="button" onclick="gopinglun()">
+	                <img src="{CBL_MANGTU_RES}/home/images/ic_comment.png" alt="评论"
+	                    style="width:0.48rem;height:0.48rem;float:left;margin-right:6px;">
+	                    <span class="fontColor font2">评论</span>
+	            </div>
+	            <span style="float:left;width:1px;height:15px;margin-top:4px;background:#ccc;display:inline-block;"></span>
+				{if $hasCollect==1}
+				<div style="font-size:0.32rem;color:#666666;float:left;width:49%;padding-left:50px;" title="点击按钮进行收藏"  role="button" id="scbtn">
+					<img src="{CBL_MANGTU_RES}/home/images/ic_collection.png" alt="" id="shoucImg1" class="down"
+						 style="width:0.48rem;height:0.43rem;float:left;margin-right:6px; ">
+					<span id="shouctext" class="fontColor font1">已收藏</span>
+				</div>
+				{else}
+				<div style="font-size:0.32rem;color:#666666;float:left;width:49%;padding-left:50px;" title="点击按钮进行收藏"  role="button" id="scbtn">
+					<img src="{CBL_MANGTU_RES}/home/images/shoucangimg.png" alt="" id="shoucImg1"
+						 style="width:0.48rem;height:0.43rem;float:left;margin-right:6px; ">
+					<span id="shouctext" class="fontColor font1">收藏</span>
+				</div>
+				{/if}
+
+	        </div>
+	    </div>
+	    <!-- 章节类表 -->
+	    <div style="margin-top:0.25rem;padding-bottom: 1rem;">
+	        <div class="clearfix" style="width:100%;">
+	            <p style="font-size:0.32rem;color:#333;font-weight: 600;float:left;" class="fontColor fontSize">章节列表</p>
+	        </div>
+	        <div id="lists" >
+	           
+	            <ul>
+	                {loop $data['SubItemList'] $item}
+	                <li style="margin-top: 10px;" onclick="changevideo(this,'{$item['VideoUrl']}','{$item['SrtUrl']}','{$item['SrtTextUrl']}','{$item['ChapterIndex']}')" >
+	                	<div style="float: left;height: 39px;overflow: hidden;width:77%;text-overflow:ellipsis;white-space: nowrap " class="fontColor font1">
+	                		{$item['Title']}
+	                	</div>
+						{if $LastChapterIndex == $item['ChapterIndex']}
+						<span style="color:#BBB;font-size:0.24rem;" class="fontColor font3">上次播放</span>
+						{/if}
+
+	                </li>
+	                {/loop}
+	                
+	            </ul>
+	        </div>
+	
+	    </div>
+	</div>
+	<!--<div>-->
+	<!--	<img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>-->
+	<!--</div>-->
+	<div style="display:none">
+	    <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+	</div>
+	</div>
+	<script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+	<script src="{CBL_MANGTU_RES}/home/js/ckin.js"></script>
+	<script>
+		window.onload=function(){
+		var param = '{$sizeSet}'; 
+		console.log(param)
+		var colorParam ="{$textColor}"
+	  	if(colorParam=='黑白对比度'){
+	  		 $('body,.fontColor').css('background-color', '#000');
+	  		 $('.fontColor,.fontColor1,.fontColor2').css('color', '#F7F7F7');
+	  	}
+	  	if(colorParam=='白蓝对比度'){
+	  		 $('body,.fontColor').css('background-color', '#fff');
+	  		 $('.fontColor,.fontColor1,.fontColor2').css('color', '#000000');
+	  	}
+	  	if(colorParam=='蓝黄对比度'){
+	  		 $('body,.fontColor').css('background-color', '#0915F5');
+	  		 $('.fontColor,.fontColor1,.fontColor2').css('color', '#FFFE54');
+	  	}
+	  	if(colorParam=='白红对比度'){
+	  		 $('body,.fontColor').css('background-color', '#fff');
+	  		 $('.fontColor,.fontColor1,.fontColor2').css('color', '#000000');
+	  	}
+	  	if(colorParam=='白黑对比度'){
+	  		console.log('你回复了默认')
+	  	}
+	  	if(colorParam=='黄黑对比度'){
+	  		 $('body,.fontColor').css('background-color', '#FFFE54');
+	  		 $('.fontColor,.fontColor1,.fontColor2').css('color', '#000000');
+	  	}	
+	  	if(param==1){
+		$('.changefont').click()
+		 
+	  	}
+	}
+		var image1='{CBL_MANGTU_RES}/home/images/shoucangimg.png';
+	    var image2='{CBL_MANGTU_RES}/home/images/ic_collection.png'
+		var addcollect_url ="{php echo $this->createMobileUrl('videoflash',array('type'=>'addCollect'));}";
+		var deletecollect_url ="{php echo $this->createMobileUrl('videoflash',array('type'=>'deleteCollect'));}";
+		var addhistory_url ="{php echo $this->createMobileUrl('videoflash',array('type'=>'addHistory'));}";
+		var addreadlog_url = "{php echo $this->createMobileUrl('user',array('type'=>'AddReadLog'));}";
+		var et=setTimeout(function(){
+			var DbCode='{$DbCode}';
+			var SysId='{$SysId}';
+			var ChapterIndex='{$LastChapterIndex}';
+			$.ajax({
+				type : 'post',
+				url : addreadlog_url,
+				data:{DbCode:DbCode,SysId:SysId,ResType:3,ChapterIndex:ChapterIndex},
+				dataType : 'json',
+				success : function(data) {
+					console.log('data',data);
+				},
+			});
+		}, 12000);
+	    // console.log(image1)
+	     //通过id="ctr"获取元素click事件
+	 $("#scbtn").click(function(){
+		 var DbCode = "{$DbCode}";
+		 var SysId = "{$SysId}";
+		 var CategoryCode = "{$CategoryCode}";
+		 var Title = "{$data['Title']}";
+		 var ImageUrl = "{$data['ImageUrl']}";
+	    //将显示和隐藏两个状态下的显示图标路径放入images变量中
+	    // var images=['../dist/images/shoucangimg.png','../dist/images/ic_collection.png'];
+	    //通过class的值来判断控制显示的图标样式
+	    if($("#shoucImg1").attr("class")=="down"){
+			//todo 取消收藏
+			$.ajax({
+				type : 'post',
+				url : deletecollect_url,
+				data:{DbCode:DbCode,SysId:SysId,Title:Title},
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if(data.code == 0){
+						$("#shoucImg1").attr("src",image1);
+						$("#shoucImg1").removeClass();
+						$('#shouctext').html('收藏')
+					}
+				},
+			});
+
+	    }else{
+
+			//todo 收藏
+			$.ajax({
+				type : 'post',
+				url : addcollect_url,
+				data:{Title:Title,DbCode:DbCode,SysId:SysId,CategoryCode:CategoryCode,ImageUrl:ImageUrl},
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if(data.code == 0){
+						$("#shoucImg1").attr("src",image2);
+						$("#shoucImg1").addClass("down");
+						$('#shouctext').html('已收藏')
+					}
+				},
+			});
+
+	    }
+	
+	  });
+	  function onload(){
+	        var videourl="{$data['SubItemList'][0]['VideoUrl']}";
+	        $("#video").attr('src',videourl);
+	        $("#lists ul li:first").addClass('active');
+		  	addhistory(1);
+	   }
+	  function changevideo(obj,VideoUrl,SrtUrl,SrtTextUrl,ChapterIndex){
+	        $("#lists ul li").removeClass();
+	        $(obj).addClass('active');
+	        $("#video").attr('src',VideoUrl);
+		  	addhistory(ChapterIndex);
+	    }
+	    function addhistory(ChapterIndex){//$Title,$DbCode,$SysId,$ChapterIndex,1,$Title,$ImageUrl,$CategoryCode,
+			var Title = "{$data['Title']}";
+			var DbCode = "{$DbCode}";
+			var SysId = "{$SysId}";
+			var ImageUrl = "{$data['ImageUrl']}";
+			var CategoryCode = "{$CategoryCode}";
+			$.ajax({
+				type : 'post',
+				url : addhistory_url,
+				data:{Title:Title,DbCode:DbCode,SysId:SysId,CategoryCode:CategoryCode,ChapterIndex:ChapterIndex,ImageUrl:ImageUrl},
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+				},
+			});
+
+		}
+	  function goindex(){
+        //content = JSON.parse(Content);
+        window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+    } 
+      function gopinglun(){
+		  var DbCode = '{$DbCode}';
+		  var SysId = '{$SysId}';
+		  var Identifier='{$Identifier}';
+		  var Title = "{$data['Title']}";
+		  var ChapterIndex =1;
+		  var ResType = 3
+		  var pingjia_url ="{php echo $this->createMobileUrl('videoflash',array('type'=>'comment'));}";
+		  //console.log(DbCode);console.log(SysId);console.log(Identifier);console.log(Title);console.log(ChapterIndex);console.log(ResType);
+		  window.location.href=pingjia_url+"&DbCode="+DbCode+"&SysId="+SysId+"&Identifier="+Identifier+"&Title="+Title+"&ChapterIndex="+ChapterIndex+"&ResType="+ResType;
+      } 
+		var fontSize = ['0.5rem', '0.32rem']
+		var font1 = ['0.36rem', '0.28rem']
+		var font4 = ['0.36rem', '0.24rem']
+		var font2 = ['0.4rem', '0.32rem']
+		var font3 = ['0.32rem', '0.24rem']
+		var index = 0;
+		
+		$('.changefont').on('click', function () {
+			console.log(1)
+			$('.fontSize').css('font-size', fontSize[index]);
+			$('.font1').css('font-size', font1[index]);
+			$('.font2').css('font-size', font2[index]);
+			$('.font3').css('font-size', font3[index]);
+			$('.font4').css('font-size', font4[index]);
+		index++;
+		if (index == fontSize.length &&index == font1.length&&index == font2.length&&index == font3.length&&index == font4.length) index = 0;
+		});
+		
+	</script>
+</body>
+</html>

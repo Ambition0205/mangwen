@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>微盲图</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+   #menu {
+  overflow: hidden;
+  height: 100%;
+  float: left;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#menu #open {
+  /*显示菜单样式*/
+  height: 100%;
+  background-color: #fff;
+  padding-bottom: 0.1rem;
+  box-sizing: border-box;
+  -webkit-transition: all 0.8s ease;
+  -moz-transition: all 0.8s ease;
+  -o-transition: all 0.8s ease;
+  -ms-transition: all 0.8s ease;
+}
+#menu #open .navH {
+  height: 0.6rem;
+  background-color: #44495a;
+  line-height: 0.6rem;
+  text-align: center;
+  font-size: 0.2rem;
+  color: #fff;
+  position: relative;
+  box-sizing: border-box;
+}
+#menu #open .navH span {
+  position: absolute;
+  top: 49%;
+  right: 0;
+  padding: 0 0.15rem;
+  cursor: pointer;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  display: inline-block;
+}
+#menu #open .navH span .obscure {
+  width: 0.24rem;
+}
+#menu #open .navBox {
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 0.1rem;
+  margin:0 0.6rem;
+  margin-top: 0.24rem;
+}
+#menu #open .navBox ul li {
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+#menu #open .navBox ul li .obtain:hover {
+	background-color: yellow; 
+}
+#menu #open .navBox ul li h2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  color: #333;
+  font-size: 0.28em;
+  padding: 0.15rem 0;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+}
+#menu #open .navBox ul li h2 i {
+  position: absolute;
+  top: 50%;
+  right: 0.15rem;
+  border-top: 0.07rem transparent dashed;
+  border-left: 0.07rem solid #333;
+  border-right: 0.07rem transparent dashed;
+  border-bottom: 0.07rem transparent dashed;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 0.6s ease;
+  -moz-transition: -moz-transform 0.6s ease;
+  -o-transition: -o-transform 0.6s ease;
+  -ms-transition: -ms-transform 0.6s ease;
+  transform-origin: 4px 3px;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+#menu #open .navBox ul li h2 .arrowRot {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#menu #open .navBox ul li .secondary {
+  overflow: hidden;
+  height: 0;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+}
+#menu #open .navBox ul li .secondary h3 {
+  padding: 0.1rem 0;
+    text-align: left;
+    padding-left:0.4rem;
+    font-size: 0.13rem;
+    background-color: #f4f4f4;
+    color: #333;
+    border-bottom: 0.8px solid #eee;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+}
+#menu #open .navBox ul li .secondary h3:hover {
+  background-color: #1acbfc;
+}
+#menu #open .navBox ul li .secondary .seconFocus {
+  background-color: #1acbfc;
+  -webkit-box-shadow: 3px 3px 3px #aa8c51;
+  -moz-box-shadow: 3px 3px 3px #aa8c51;
+  box-shadow: 3px 3px 3px #aa8c51;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <section class="aui-flexView" style="margin-top:3px;height:93%;">
+        <div style="display: flex;position: relative;z-index: 102;background: #fff;">
+            <a href="javascript:;">
+                <i class="icon " ></i>
+            </a>
+            <div style=" align-items: center;width: 90%;order: 2;margin-top:0.4rem;">
+                <div style="    background: #f0f0f0;border-radius: 30px;position: relative;width: 100%;margin: 0 auto;height: 0.68rem;">
+                    <i class="icon icon-search" style="position: absolute;left: 8px;top: 0.14rem;"></i>
+                    <input type="text" placeholder="搜索你想要的书籍" style="width: 100%;background: none;border: none;text-align: left;height: 0.4rem;font-size:0.25rem;border-radius: 22px;position: absolute;top: 0.14rem;left: 0.6rem;">
+                </div>
+            </div>
+        </div>
+        <div id="menu">
+                <!--显示菜单-->
+                <div id="open">
+                   
+                    <div class="navBox">
+                        <ul>
+                            <li>
+                                <h2 class="obtain">七月新书通报<i></i></h2>
+                                <div class="secondary" >
+                                    <h3>故宫</h3>
+                                    <h3>十三陵</h3>
+                                    <h3>圆明园</h3>
+                                    <h3>长城</h3>
+                                    <h3>雍和宫</h3>
+                                    <h3>天坛公园</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="obtain">四月新书通报<i></i></h2>
+                                <div class="secondary">
+                                    <h3>栖霞寺</h3>
+                                    <h3>夫子庙</h3>
+                                    <h3>海底世界</h3>
+                                    <h3>中山陵</h3>
+                                    <h3>乌衣巷</h3>
+                                    <h3>音乐台</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="obtain">三月新书通报<i></i></h2>
+                                <div class="secondary">
+                                    <h3>东方明珠</h3>
+                                    <h3>外滩</h3>
+                                    <h3>豫园</h3>
+                                    <h3>文庙</h3>
+                                    <h3>世博园</h3>
+                                    <h3>田子坊</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="obtain">二月新书通报<i></i></h2>
+                                <div class="secondary">
+                                    <h3>华侨城</h3>
+                                    <h3>观澜湖</h3>
+                                    <h3>世界之窗</h3>
+                                    <h3>东门老街</h3>
+                                    <h3>七娘山</h3>
+                                    <h3>光明农场</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <h2 class="obtain">一月新书通报<i></i></h2>
+                                <div class="secondary">
+                                    <h3>白云山</h3>
+                                    <h3>长隆</h3>
+                                    <h3>黄花岗公园</h3>
+                                    <h3>中山纪念堂</h3>
+                                    <h3>华南植物园</h3>
+                                    <h3>南沙湿地公园</h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+         </div>
+    </section>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #ccc;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="../dist/js/aui.js"></script>
+<script src="../dist/js/menu.js"></script> <!--控制js-->
+</body>
+
+</html>

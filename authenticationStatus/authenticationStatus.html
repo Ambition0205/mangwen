@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在线办证-资料认证</title>
+    <link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .label1 {
+            float: left;
+            color: #0C0C0C;
+        }
+
+        .con1 {
+            float: right;
+            color:#999999;
+        }
+
+        .div3 ul {
+            padding-left: 0.28rem;
+            padding-right: 0.3rem;
+        }
+
+        .div3 ul li {
+            height: 0.96rem;
+            line-height: 0.96rem;
+            border-bottom: 1px solid #eee;
+
+        }
+    </style>
+</head>
+
+<body >
+    <div style="width:100%;height: 0.2rem;background:#f4f4f4;"></div>
+    <div style="display: flex;flex-direction: column;height:100%;">
+        <div class="div3" style="flex: 1;overflow: auto;padding-bottom: 1rem;">
+            <ul style="margin-right:0.2rem;font-size:0.28rem;">
+                <li>
+                    <div class="label1">有效期至:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">有效期至:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">有效期至:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">有效期至:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">有效期至:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+                <li>
+                    <div class="label1">E-mail:</div>
+                    <div class="con1">13834562249</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--底部-->
+    <div
+        style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;width: 100%; background: #fff;z-index:999">
+        <img src="{CBL_MANGTU_RES}/home/images/fanhui.png"
+            style="width: 0.44rem;height: 0.36rem;margin-left: 0.3rem;margin-top: 0.3rem;" onclick="goindex();" />
+        <a href="#"><img src="{CBL_MANGTU_RES}/home/images/shouye.png"
+                style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:2.44rem;" /></a>
+        <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png"
+            style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.46rem;" />
+        <img class="changefbgcolor" src="{CBL_MANGTU_RES}/home/images/changebg.png"
+            style="width:0.66rem;height:0.66rem;position: absolute;bottom:0.2rem;right:0.44rem;" />
+    </div>
+    <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+    <script>
+        // $(document).ready(function () {
+        //     var colors = ['#000000', '#FFFFFF', '#0915F5', '#FFFFFF', '#FFFE54', '#F7F7F7'];
+        //     var fontColor = ['#F7F7F7', '#0915F5', "#FFFE54", "#C42A29", "#000000", '#0C0C0C']
+        //     var fontSize = ['0.48rem', '0.28rem']
+        //     var fontSize1 = ['0.28rem', '0.24rem']
+        //     var idx = 0;
+        //     var idx1 = 0;
+        //     var index = 0;
+        //     $('.changefbgcolor').on('click', function () {
+        //         $('body').css('background-color', colors[idx]);
+        //         idx++;
+        //         if (idx == colors.length) idx = 0;
+
+        //         $('.conLists_Title').css('color', fontColor[idx1]);
+        //         $('.con1').css('color', fontColor1[idx1]);
+        //         idx1++;
+        //         if (idx1 == fontColor.length&&idx1 == fontColor1.length) idx1 = 0;
+        //     });
+        //     $('.changefont').on('click', function () {
+        //         $('.label1').css('font-size', fontSize[index]);
+        //         $('.con1').css('font-size', fontSize1[index]);
+        //         index++;
+        //         if (index == fontSize.length && index == fontSize1.length) index = 0;
+        //     });
+        // });
+        Date.prototype.toLocaleString = function() {
+        // 补0   例如 2018/7/10 14:7:2  补完后为 2018/07/10 14:07:02
+        function addZero(num) {
+            if(num<10)
+                return "0" + num;
+            return num;
+        }
+        // 按自定义拼接格式返回
+                 return this.getFullYear() + "/" + addZero(this.getMonth() + 1) + "/" + addZero(this.getDate()) + " " +
+                addZero(this.getHours()) + ":" + addZero(this.getMinutes()) + ":" + addZero(this.getSeconds());
+        };
+        // 根据毫秒数构建 Date 对象
+        var date = new Date(1179.8855);
+
+
+        dateTime = date.toLocaleString();
+
+        console.log(date)
+    </script>
+
+
+</body>
+
+</html>

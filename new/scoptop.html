@@ -1,0 +1,77 @@
+
+<!DOCTYPE html >
+<html>
+<head>
+	<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+	<style type="text/css">
+		.lineheight {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div style="width:100%;height:300px;background:#f2f2f2;overflow:auto;" id="top">
+	</div>
+</body>
+<script type="text/javascript">
+	var content = "新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播新闻联播";
+	var content1 = "csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站csdn官方网站";
+	var count = 0
+	window.onload = function () {
+ 
+		// 方法一：传统js操dom对象
+		// var t = setInterval(
+		// 	function () {
+		// 		count++
+		// 		$("#top p:last").removeClass("lineheight");
+		// 		if (count % 2 == 0) {
+		// 			document.getElementById("top").innerHTML = document.getElementById("top").innerHTML + "<p class=\"lineheight\">" + content + "</p>";
+		// 		}
+		// 		else {
+		// 			document.getElementById("top").innerHTML = document.getElementById("top").innerHTML + "<p class=\"lineheight\">" + content1 + "</p>";
+		// 		}
+		// 		document.getElementById("top").scrollTop = document.getElementById('top').scrollHeight;
+		// 		if (document.getElementById("top").innerText.length > 3000) {
+		// 			clearInterval(t);
+		// 		}
+		// 	}
+		// 	, 1000);
+		// // 方法二：jquery
+		// var t = setInterval(
+		// 	function () {
+		// 		count++
+		// 		$("#top p:last").removeClass("lineheight");
+		// 		if (count % 2 == 0) {
+		// 			$("#top").html($("#top").html() + "<p class=\"lineheight\">" + content + "</p>");
+		// 		}
+		// 		else {
+		// 			$("#top").html($("#top").html() + "<p class=\"lineheight\">" + content1 + "</p>");
+		// 		}
+		// 		$("#top").scrollTop($("#top")[0].scrollHeight);
+		// 		if ($("#top").text().length > 3000) {
+		// 			clearInterval(t);
+		// 		}
+		// 	}
+		// 	, 1000);
+		// 方法三：jquery优化，代码更简洁
+		var t = setInterval(
+			function () {
+				count++
+				$("#top p:last").removeClass("lineheight");
+				$("#top").append("<p class=\"lineheight\"></p>")
+				if (count % 2 == 0) {
+					$("#top p:last").text(content);
+				}
+				else {
+					$("#top p:last").text(content1);
+				}
+				$("#top").scrollTop($("#top")[0].scrollHeight);
+				if ($("#top").text().length > 3000) {
+					clearInterval(t);
+				}
+			}
+			, 1000);
+ 
+	}
+</script>
+</html>

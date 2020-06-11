@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>朗读设置</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+
+    <link href="{CBL_MANGTU_RES}/home/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{CBL_MANGTU_RES}/home/css/RangeSlider.css" rel="stylesheet" type="text/css" />
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+
+
+    <style>
+
+    </style>
+</head>
+
+<body style="background: #F1F1F1;" >
+	<div style="background: #F1F1F1;height:0.2rem;"></div>
+    <div class="boxs">
+        <ul class="clearfix">
+            <span style="float:left; font-size: 0.30rem;margin-top:0.3rem;color:2B2B2B;">盲色</span>
+            <li class="{if $per == 0}active{/if}" data-id="0">小美</li>
+            <li class="{if $per == 4}active{/if}" data-id="4">丫丫</li>
+            <li class="{if $per == 1}active{/if}" data-id="1">小宇</li>
+            <li class="{if $per == 3}active{/if}" data-id="3">逍遥</li>
+        </ul>
+        <input type="hidden" class="bbb" value="{$per}" id="per"/>
+    </div>
+    <div class="form-horizontal">
+        <div class="form-group btnDiv clearfix" style="margin-top:0.1rem;background: #fff;height:0.9rem;line-height: 0.9rem;">
+            <label class="col-lg-3 control-label" style="font-size:0.28rem;float:left;margin-left:0.4rem;">语速：</label>
+
+            <div class="col-lg-3 control-label"><input type="number" min="1" max="15" name="speakSound" value="{$spd}" 
+                    oninput="change('speakSound')" class="speakSound"
+                    style="margin-right:0.5rem;float:right;width:0.8rem;border-radius:0.2rem;height:0.6rem;line-height:0.6rem;font-size:0.26rem;border:1px solid #9D9D9D;margin-top: 0.15rem;text-align: center;">
+            </div>
+            <div>
+                <span style="font-size:0.24rem;float:left;">1</span><!--语速-->
+                <input type="range" min="1" max="15" step="1" value="{$spd}" oninput="changeSound('speakSound')"
+                    id="speakSound" style="margin:0 0.2rem;margin-top: 0.4rem;"  class="bbb aaa">
+                             <span style="font-size:0.24rem;float:left;">15</span>
+            </div>
+        </div>
+        <div class="form-group btnDiv clearfix" style="margin-top:0.1rem;background: #fff;height:0.9rem;line-height: 0.9rem;">
+            <label class="col-lg-3 control-label" style="font-size:0.28rem;float:left;margin-left:0.4rem;">音调：</label>
+
+            <div>
+
+                <input type="number" min="1" max="15" value="{$pit}" name="listenSound" oninput="change('listenSound')" class="listenSound"
+                    style="margin-right:0.5rem;float:right;width:0.8rem;border-radius:0.2rem;height:0.6rem;line-height:0.6rem;font-size:0.26rem;border:1px solid #9D9D9D;margin-top: 0.15rem;text-align: center;"><!--音调-->
+
+            </div>
+            <div>
+                <span style="font-size:0.24rem;float:left;">1</span>
+                <input type="range" min="1" max="15" step="1" value="{$pit}" oninput="changeSound('listenSound')"
+                    id="listenSound" style="margin:0 0.2rem;margin-top: 0.4rem;"  class="bbb ccc">
+                <span style="font-size:0.24rem;float:left;">15</span>
+            </div>
+        </div>
+        <div class="form-group btnDiv clearfix" style="margin-top:0.1rem;background: #fff;height:0.9rem;line-height: 0.9rem;">
+            <label class="col-lg-3 control-label" style="font-size:0.28rem;float:left;margin-left:0.4rem;">音量：</label>
+
+            <div>
+
+                <input type="number" min="1" max="15" name="sendSound" value="{$vol}" oninput="change('sendSound')"  class="sendSound"
+                    style="margin-right:0.5rem;float:right;width:0.8rem;border-radius:0.2rem;height:0.6rem;line-height:0.6rem;font-size:0.26rem;border:1px solid #9D9D9D;margin-top: 0.15rem;text-align: center;">
+
+            </div>
+            <div>
+                <span style="font-size:0.24rem;float:left;">1</span>
+                     <input type="range" min="1" max="15" step="1" value="{$vol}" oninput="changeSound('sendSound')" 
+                    id="sendSound" style="margin:0 0.2rem;margin-top: 0.4rem;position: relative;" class="bbb ddd">
+                <span style="font-size:0.24rem;float:left;">15</span>
+                <!-- <input style="margin:0 0.2rem;margin-top: 0.4rem;background: red;height:5px;border:1px solid red;width:50px;position: absolute;top:132px;left: 0px;" class="ccc"> -->
+                
+            </div>
+        </div>
+    	<div style="text-align:center;margin-top:20px;">
+            <audio id="shVideo" controls="controls" autoplay="autoplay"  preload src="" style="display:none" @timeupdate="updateTime"></audio>
+			<button style="border-radius:30px;border:1px solid #2580EE;-webkit-appearance:none;background:#2580EE;height:38px;line-height:38px;color:#fff;font-size:0.32rem;width:285px;"  class="testSubmit">测试提交</button>
+    	</div>
+    </div>
+    <div class="footer">
+    		<div>
+				<img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>
+			</div>
+			<div style="display:none">
+		    	<img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+			</div>
+    </div>
+    <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/RangeSlider.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var spd = '{$spd}';
+        var pit = '{$pit}';
+        var vol = '{$vol}';
+        var getvoice_url ="{php echo $this->createMobileUrl('ebooks',array('type'=>'getvoice'));}";
+        var delvoice_url = "{php echo $this->createMobileUrl('ebooks',array('type'=>'savesetting'));}";
+
+        //用户调整讲话的音量 滑杆
+        function changeSound(elem) {
+            var sound = $("#" + elem).val();
+            // console.log(sound)
+            // console.log( $('.ccc').attr("max",sound))
+            $("#" + elem).parent("div").prev("div").children("input").val(sound);
+        };
+        //用户调整讲话的音量 输入框
+        function change(elem) {
+            var sound = $("input[name=" + elem + "]").val();
+            $("#" + elem).val(sound);
+        };
+        $("#sendSound").RangeSlider({ min: 1,   max: 15,  step: 1});
+        $("#listenSound").RangeSlider({ min: 1,   max: 15,  step: 1});
+        $("#speakSound").RangeSlider({ min: 1,   max: 15,  step: 1});
+
+		window.onload=function(){
+                 $(".aaa").css('background-size',($(".aaa").val()*6.6)+`%`)
+                 $(".ccc").css('background-size',($(".ccc").val()*6.6)+`%`)
+                 $(".ddd").css('background-size',($(".ddd").val()*6.6)+`%`)
+				var param = '{$sizeSet}';
+				console.log(param)
+				var colorParam ="{$textColor}"
+			  	if(colorParam=='黑白对比度'){
+			  		 $('body,.inputbg').css('background-color', '#000');
+			  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#F7F7F7');
+			  	}
+			  	if(colorParam=='白蓝对比度'){
+			  		 $('body,.inputbg').css('background-color', '#fff');
+			  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+			  	}
+			  	if(colorParam=='蓝黄对比度'){
+			  		 $('body,.inputbg').css('background-color', '#0915F5');
+			  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#FFFE54');
+			  	}
+			  	if(colorParam=='白红对比度'){
+			  		 $('body,.inputbg').css('background-color', '#fff');
+			  		  //$('.jslb ul li.active').css('background-color', '#red');
+			  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+			  	}
+			  	if(colorParam=='白黑对比度'){
+			  		console.log('你回复了默认')
+			  	}
+			  	if(colorParam=='黄黑对比度'){
+			  		 $('body,.inputbg').css('background-color', '#FFFE54');
+			  		 $('.jsss span,.jssstitle,.jslbtitle').css('color', '#000000');
+			  	}	
+			  	if(param==1){
+				$('.changefont').click()
+				 
+			  	}
+			}
+		//返回首页
+		function goindex(){
+	         //content = JSON.parse(Content);
+	         window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+	    }
+	    //改变字体大小
+	    $('.changefont').on('click', function () {
+		            $('.content .jslb ul li,.jsss span').css('font-size', '0.48rem');
+		            $('.jssstitle,.jslbtitle').css('font-size', '0.52rem');
+		            $('.jsss input').css({"width": "20px","height":"20px"}); 
+		   });
+		    //input
+		 $(".speakSound").on('input',function(e){
+			$(".aaa").css('background-size',($(".aaa").val()*6.6)+`%`)
+		})
+		 
+		 $(".listenSound").on('input',function(e){
+			$(".ccc").css('background-size',($(".ccc").val()*6.6)+`%`)
+		 })
+
+		 $(".sendSound").on('input',function(e){
+			$(".ddd").css('background-size',($(".ddd").val()*6.6)+`%`)
+		 
+		 })
+		
+		// 切换音色按钮
+		$('.boxs ul li').click(function () {
+        	$(this).addClass("active").siblings().removeClass('active')
+        	var lis = $(this).attr("data-id");
+        	$("#per").val(lis);
+            vol=$("#sendSound").val();
+            pit=$("#listenSound").val();
+            spd=$("#speakSound").val();
+            per=$("#per").val();
+            console.log(pit+'%%%'+vol+'&&&'+spd+"&&&"+per);
+            $.ajax({
+                type : 'post',
+                url : delvoice_url,
+                data:{pit:pit,vol:vol,spd:spd,per:per},
+                dataType : 'json',
+                success : function(data) {
+
+                    if(data.code == 0){
+                        console.log('yes');
+
+                    }else {
+
+                    }
+                },
+            });
+	     })
+	     //input
+	     $(".bbb").bind("input propertychange",function(event){
+             vol=$("#sendSound").val();
+             pit=$("#listenSound").val();
+             spd=$("#speakSound").val();
+             per=$("#per").val();
+	        console.log(pit+'%%%'+vol+'&&&'+spd+"&&&"+per);
+             $.ajax({
+                 type : 'post',
+                 url : delvoice_url,
+                 data:{pit:pit,vol:vol,spd:spd,per:per},
+                 dataType : 'json',
+                 success : function(data) {
+
+                     if(data.code == 0){
+                         console.log('yes');
+
+                     }else {
+
+                     }
+                 },
+             });
+
+			
+		});
+        /*testvoice();
+		function testvoice(){
+            var txt = '1'
+            var zhuanmas  = encodeURIComponent(txt);//转码
+            console.log(11);
+            $.ajax({
+                type : 'post',
+                url : getvoice_url,
+                data:{txt:zhuanmas},
+                dataType : 'json',
+                success : function(data) {
+                    console.log(data.src);
+                    audio.src=data.src;
+                    audio.play();
+                },
+            });
+        }*/
+
+
+		//   //提交测试按钮audio
+        function autoPlayAudio() {
+            wx.config({
+                // 配置信息, 即使不正确也能使用 wx.ready
+                debug: false,
+                appId: '',
+                timestamp: 1,
+                nonceStr: '',
+                signature: '',
+                jsApiList: []
+            });
+            wx.ready(function() {
+                var globalAudio=document.getElementById("shVideo");
+                globalAudio.play();
+            });
+        };
+        autoPlayAudio();
+        var audio = document.getElementById('shVideo');
+        $(window).one('touchstart', function(){
+            audio.play();
+        })
+		$('.testSubmit').on('click',function(){
+
+
+		    var txt = '秋已经很深了，似乎随时都可能陨落，让冬给替代。那呼啸的北风或许正是冬的使者，匆忙而来，不想并未在这土地逗留片刻，' +
+                '就向南而去了。或许，它的目的地也是那遥远的北回归线只是，一切都不得而知了。远处的漓水，潇潇暮雨，一叶扁舟横在了烟雨朦胧处，' +
+                '若隐若现，似极了你的身影。只是，那一叶小小的扁舟，怎能载得动，载得动我如许多的愁？'
+            var zhuanmas  = encodeURIComponent(txt);//转码
+            console.log(11);
+            $.ajax({
+                 type : 'post',
+                 url : getvoice_url,
+                 data:{txt:zhuanmas},
+                 dataType : 'json',
+                 success : function(data) {
+                     console.log(data);
+                     audio.src=data.src;audio.play();
+                 },
+             });
+
+		 })
+		 
+       
+    </script>
+
+</body>
+
+</html>

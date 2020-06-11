@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>借阅历史</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .clearfloat {
+            zoom: 1;
+        }
+
+        .clearfloat::after {
+            display: block;
+            clear: both;
+            content: "";
+            visibility: hidden;
+            height: 0;
+        }
+
+        .tab-list {
+            position: relative;
+        }
+
+        .tab-list .tab-itom {
+            float: left;
+            list-style: none;
+            margin-right: 0.08rem;
+        }
+
+        .tab-itom .test-label {
+            position: relative;
+            display: block;
+            line-height: 0.54rem;
+            text-align: center;
+            background: #e7e8eb;
+            font-size: 0.32rem;
+            width: 2.4rem;
+            text-align: center;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            border-radius: 30px;
+        }
+
+        .tab-itom .tab-box {
+            /* 设置绝对定位方便定位相对于tab-list栏的位置，同时为了可以使用z-index属性 */
+            position: absolute;
+            left: 0;
+            top: 0rem;
+            height: 248px;
+            /* background: #fff; */
+            /* 设置层级最低方便选中状态遮挡 */
+            z-index: 0;
+            font-size: 0.28rem;
+            color: #333;
+            width: 100%；
+        }
+
+        /* 用绝对定位使按钮脱离文档流，透明度设置为0将其隐藏 */
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* 利用选择器实现  tab切换 */
+
+        /* 当radio为选中状态时设置它的test-label兄弟元素的属性 */
+        input[type="radio"]:checked+.test-label {
+            /* 为了修饰存在的边框背景属性 */
+            border-radius: 30px;
+            color: #fff;
+            background: #0060FF;
+            font-size: 0.32rem;
+            width: 2.4rem;
+            text-align: center;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            /* 为了修饰存在的层级使下边框遮挡下方div的上边框 */
+            z-index: 10;
+        }
+
+        /* 当radio为选中状态时设置与它同级的tab-box元素的显示层级 */
+        input[type="radio"]:checked~.tab-box {
+            /* 选中时提升层级，遮挡其他tab页达到选中切换的效果 */
+            z-index: 99;
+        }
+
+        .box>li {
+            margin: 0.24rem 0.2rem;
+            background: #FFF;
+            border-radius: 5px;
+        }
+
+        .tximg {
+            width: 1.6rem;
+            height: 2rem;
+            margin: 0.2rem;
+            margin-right: 0.3rem;
+
+        }
+        .boxtwo{
+            margin-bottom: 1.2rem;
+        }
+        .boxtwo li {
+            position: relative;
+            color: #0C0C0C;
+            height: 4.06rem;
+            margin: 0.26rem;
+            background: #fff;
+            border-radius: 0.1rem;
+        }
+
+        .boxtwo li .hsbtn,
+        .boxtwo li .xjbtn {
+            width: 2.66rem;
+            height: 0.76rem;
+            border-radius: 0.5rem;
+
+        }
+
+        .boxtwo li .hsbtn {
+            border: 1px #DE1212 solid;
+            color: #DE1212;
+            background: #fff;
+            font-size: 0.24rem;
+        }
+
+        .boxtwo li .xjbtn {
+            color: #fff;
+            background: #DE1212;
+            border: 1px #DE1212 solid;
+            font-size: 0.24rem;
+        }
+
+
+
+
+        .btn1 {
+            position: fixed;
+            padding-top: 0.4rem;
+            padding-left: 1.6rem;
+            height:1.3rem;
+            width: 100%;
+            z-index: 99999;
+            background: #fff;
+        }
+
+        .btn {
+            font-size: 0.3rem;
+            width: 2.16rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            color: #666666;
+            background: #F2F2F2;
+        }
+
+        .content {
+            margin: 0rem auto;
+            display: none;
+            font-size: 12px;
+            padding-top:60px;
+        }
+
+        .btn.active {
+            background-color: #0060FF;
+            color: #fff;
+        }
+
+        .content.show {
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body class="clearfloat" style="background:#f4f4f4;">
+
+    <div class="btn1 clearfix">
+        <div class="btn active" style="float:left;border-bottom-left-radius: 0.6rem;border-top-left-radius:0.6rem;">借阅历史
+        </div>
+        <div class="btn" style="float:left;border-bottom-right-radius: 0.6rem;border-top-right-radius: 0.6rem;font-size: 0.24rem;">电子书借阅历史</div>
+    </div>
+    <div class="content show" style="">
+        <div class="box">
+            <ul class="tab-list clearfloat">
+                <li class="tab-itom">
+                    <div class="tab-box" style="width:100%;">
+                        <ul class="box">
+                            <li class="clearfix">
+                                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                <a href="javascript;:" class="fl" style="margin-top:0.2rem;">
+                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.1rem;">挪威的森林</div>
+                                    <div style="color:#6EA5FF;font-size:0.24rem;margin-bottom:0.1rem;">【日】村上春树  林少华</div>
+                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.2rem;">上海译文出版社</div>
+                                    <div style="color:#333;font-size:0.28rem;margin-bottom:0.1rem;">阅读进度:<span>一章</span></div>
+                                </a href="javascript;:">
+                            </li>
+                            <li  class="clearfix">
+                                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                <a href="javascript;:" class="fl" style="margin-top:0.2rem;">
+                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.1rem;">挪威的森林</div>
+                                    <div style="color:#6EA5FF;font-size:0.24rem;margin-bottom:0.1rem;">【日】村上春树  林少华</div>
+                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.2rem;">上海译文出版社</div>
+                                    <div style="color:#333;font-size:0.28rem;margin-bottom:0.1rem;">阅读进度:<span>一章</span></div>
+                                </a href="javascript;:">
+                            </li>
+                            <li  class="clearfix">
+                                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                <a href="javascript;:" class="fl" style="margin-top:0.2rem;">
+                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.1rem;">挪威的森林</div>
+                                    <div style="color:#6EA5FF;font-size:0.24rem;margin-bottom:0.1rem;">【日】村上春树  林少华</div>
+                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.2rem;">上海译文出版社</div>
+                                    <div style="color:#333;font-size:0.28rem;margin-bottom:0.1rem;">阅读进度:<span>一章</span></div>
+                                </a href="javascript;:">
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+              
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="box">
+            <ul class="tab-list clearfloat">
+                <li class="tab-itom">
+                    <div class="tab-box" style="width:100%;">
+                        <ul class="boxtwo">
+                            <li >
+                                <div class="clearfix" style="margin-bottom:12px;">
+                                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                    <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <button class="hsbtn">还书</button>
+                                    <button class="xjbtn">续借</button>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="clearfix" style="margin-bottom:12px;">
+                                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                    <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <button class="hsbtn">还书</button>
+                                    <button class="xjbtn">续借</button>
+                                </div>
+                            </li>
+                            <li >
+                                    <div class="clearfix" style="margin-bottom:12px;">
+                                        <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                        <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                        <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                        <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                        <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                        <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <button class="hsbtn">还书</button>
+                                        <button class="xjbtn">续借</button>
+                                    </div>
+                                </li>
+                                <li >
+                                    <div class="clearfix" style="margin-bottom:12px;">
+                                        <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                        <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                        <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                        <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                        <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                        <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <button class="hsbtn">还书</button>
+                                        <button class="xjbtn">续借</button>
+                                    </div>
+                                </li>
+                                <li >
+                                        <div class="clearfix" style="margin-bottom:12px;">
+                                            <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                            <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                            <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                            <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                            <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                            <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <button class="hsbtn">还书</button>
+                                            <button class="xjbtn">续借</button>
+                                        </div>
+                                    </li>
+                                    <li >
+                                        <div class="clearfix" style="margin-bottom:12px;">
+                                            <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                            <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                            <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                            <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                            <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                            <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <button class="hsbtn">还书</button>
+                                            <button class="xjbtn">续借</button>
+                                        </div>
+                                    </li>
+                                    <li >
+                                            <div class="clearfix" style="margin-bottom:12px;">
+                                                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                                <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                                <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                                <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                                <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                                <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <button class="hsbtn">还书</button>
+                                                <button class="xjbtn">续借</button>
+                                            </div>
+                                        </li>
+                                        <li >
+                                            <div class="clearfix" style="margin-bottom:12px;">
+                                                <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                                <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                                <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                                <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                                <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                                <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <button class="hsbtn">还书</button>
+                                                <button class="xjbtn">续借</button>
+                                            </div>
+                                        </li>
+                                        <li >
+                                                <div class="clearfix" style="margin-bottom:12px;">
+                                                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                                    <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                                </div>
+                                                <div style="text-align: center;">
+                                                    <button class="hsbtn">还书</button>
+                                                    <button class="xjbtn">续借</button>
+                                                </div>
+                                            </li>
+                                            <li >
+                                                <div class="clearfix" style="margin-bottom:12px;">
+                                                    <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+                                                    <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;">浪潮之颠（下册）</div>
+                                                    <div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;">曹雪芹</div>
+                                                    <div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;">人民邮电出版社</div>
+                                                    <div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;">借阅日期：<span>2019年07月09日</span></div>
+                                                    <div style="color:#333;font-size:0.24rem;">归还日期：<span>2019年07月22日</span></div>
+                                                </div>
+                                                <div style="text-align: center;">
+                                                    <button class="hsbtn">还书</button>
+                                                    <button class="xjbtn">续借</button>
+                                                </div>
+                                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #eee;position: fixed;bottom:0;width: 100%; background: #fff;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+        <img class="changefbgcolor" src="../dist/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:10px;right:73px;"/>
+        <img class="changefont" src="../dist/images/changebg.png" style="width:0.66rem;height:0.66rem;position: absolute;bottom:10px;right:20px;"/>
+    </div> 
+    <script>
+        //获取页面的每个按钮
+        var btns = document.getElementsByClassName("btn")
+        //获取内容盒子
+        var contents = document.getElementsByClassName("content")
+
+
+        //遍历每个按钮为其添加点击事件
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                //对当前点击的按钮赋予active类名及显示当前按钮对应的内容
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].className = btns[j].className.replace(' active', '').trim();
+                    contents[j].className = contents[j].className.replace(' show', '').trim();
+                }
+                this.className = this.className + ' active';
+                contents[this.index].className = contents[this.index].className + ' show';
+                console.log(this.index)
+                console.log(contents[this.index].className)
+            };
+
+        }
+    </script>
+</body>
+
+</html>

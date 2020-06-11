@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;background: #fff;" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>授权成功</title>
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        *,
+        *:after,
+        *:before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background: #fff;">
+        <div >
+            <img src="./dist/images/suc.png" alt="" style="width:7.5rem;height:5.5rem;">
+        </div>
+        <div style="text-align:center;margin-top:1.1rem;">
+            <p style="font-size: 0.36rem;text-align: center;font-weight:600">授权成功</p>
+            <div style="font-size:0.28rem;color:#8A8A8A;margin-top:0.46rem;">授权成功，此页面将在 <span style="border: none;width: 10px;color: #2B66FE;" id="getCode"  class="btnCode">5</span> 秒后自动关闭！</div>
+            <div style="text-align: center;">
+                    <a  href="javascript:history.go(-1)" style="display:inline-block;width:3rem;height: 0.71rem;line-height:0.71rem;background: #2B66FE;border:1px solid #2B66FE;color:#fff;font-size: 0.32rem;border-radius: 30px;margin-top:1rem;" id="cloneBtn">关闭</a>
+            </div> 
+        </div>
+    </div> 
+    <!-- <script type="text/javascript" src="./dist/js/jquery.min.js"></script>  -->
+    　<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        console.log(cookie)
+        var wait=5;
+	    function time(obj) {
+            if (wait == 0) {  
+                if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /MSIE(\d+\.\d+);/.test(navigator.userAgent))   
+                {   
+                    var referLink = document.createElement('a');   
+                    referLink.href = url;   
+                    document.body.appendChild(referLink);   
+                    referLink.click();   
+                }   
+                else{   
+                    location.href = url;   
+                } 
+                obj.innerHTML="0";
+                wait = 5;
+            } else {
+                var obj=document.getElementById("getCode");
+                obj.innerHTML= wait;
+                wait--;
+                setTimeout(function() {
+                    time(obj)
+                },
+                1000)
+            }
+        }
+        $(document).ready(function() { 
+            document.getElementById("getCode").click(time(this));
+        });  
+         
+        // 点击关闭按钮
+        $("#cloneBtn").on("click",function () { 
+            if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /MSIE(\d+\.\d+);/.test(navigator.userAgent))   
+            {   
+                var referLink = document.createElement('a');   
+                referLink.href = url;   
+                document.body.appendChild(referLink);   
+                referLink.click();   
+            }   
+            else  
+            {   
+                location.href = url;   
+            }
+         }) 
+    
+    </script>
+</body>
+
+</html>
+
+
+
+
+

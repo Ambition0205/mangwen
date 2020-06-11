@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的积分</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+        .box{
+            height:1.82rem;
+            background:#FFF;
+            margin-top:0.2rem;
+            margin-top:0.28rem;
+        }
+        .tximg{
+            width:1.3rem;
+            height:1.26rem;
+            margin:0.28rem 0.24rem 0.28rem 0.46rem;
+
+        }
+        .qiandoa{
+            width:1.24rem;
+            height:1.24rem;
+            background:#FF4267;
+            border-radius: 50%;
+            line-height:1.24rem;
+            text-align: center;
+            color:#fff;
+            margin-top: 0.3rem;
+            margin-right: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box clearfix">
+        <img src="../dist/images/3.jpg" alt="" class="tximg fl">
+        <div class="fl" style="margin-top:0.4rem;">
+            <div style="color:#383F49;font-size:0.32rem;margin-bottom:0.28rem;">纵马且歌</div>
+            <div style="color:#999999;font-size:0.0026rem;">我的积分：<span>5201314</span></div>
+        </div>
+        <div class="qiandoa fr">签到</div>
+
+    </div>
+    <script>
+    
+    </script>
+</body>
+
+</html>

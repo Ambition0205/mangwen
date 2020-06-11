@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size:100px;">
+<head>
+	<meta charset="UTF-8">
+	<title>连接WIFI</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../dist/css/popup.css"/> -->
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .listWifi{
+            padding:0.2rem 0;
+            background: #F6F7FB;
+        }
+        .listWifi p {
+           font-size: 0.32rem;
+           padding: 0.2rem ;
+           color: #000;
+        }
+        .listWifi li {
+           font-size: 0.28rem;
+           height: 1rem;
+           line-height: 1rem;
+           padding:0 0.2rem ;
+           border-bottom: 1px solid #eee;
+           background: #fff;
+           color: #000;
+        }
+        .listWifi li button{
+            font-size: 0.24rem;
+            border-radius: 0.5rem;
+            background: #0060FF;
+            border: 1px solid #0060FF;
+            color: #fff;
+            line-height: 0.6rem;
+            width: 1.4rem;
+            height: 0.6rem;
+            float: right;
+            margin-top: 0.2rem;
+            margin-right: 0.3rem;
+        }
+    </style>
+</head>
+<body style="background: #F6F7FB;height:100%;">
+	<div class="listWifi">
+		<p>wifi列表</p>
+		<ul>
+			<li>
+                <div style="float:left;">盲文图书馆1</div>
+                <button>连接</button>
+            </li>
+			<li>
+                <div style="float:left;">盲文图书馆2</div>
+                <button>连接</button>
+            </li>
+			<li>
+                <div style="float:left;">盲文图书馆3</div>
+                <button>连接</button>
+            </li>
+			<li>
+                <div style="float:left;">盲文图书馆4</div>
+                <button>连接</button>
+            </li>
+		</ul>
+    </div>
+    <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+    <script>
+        	window.onload=function(){
+		data11 =  Date.parse(new Date());
+		var param = '{$sizeSet}'; 
+		// console.log(param)
+		var colorParam ="{$textColor}"
+	  	if(colorParam=='黑白对比度'){
+               $('body,.listWifi li').css('background-color', '#000');
+               $('.listWifi li').css('border', '1px solid #000000');
+	  		 $('.listWifi p').css('color', '#F7F7F7');
+	  	}
+	  	if(colorParam=='白蓝对比度'){
+               $('body,.listWifi li').css('background-color', '#fff');
+               $('.listWifi li').css('border', '1px solid #000000');
+	  		 $('.listWifi p').css('color', '#000000');
+	  	}
+	  	if(colorParam=='蓝黄对比度'){
+               $('body,.listWifi li').css('background-color', '#0915F5');
+               $('.listWifi li').css('border', '1px solid #000000');
+	  		 $('.listWifi p').css('color', '#FFFE54');
+	  	}
+	  	if(colorParam=='白红对比度'){
+               $('body,.listWifi li').css('background-color', '#fff');
+               $('.listWifi li').css('border', '1px solid #000000');
+	  		 $('.listWifi p').css('color', '#000000');
+	  	}
+	  	if(colorParam=='白黑对比度'){
+	  		console.log('你回复了默认')
+	  	}
+	  	if(colorParam=='黄黑对比度'){
+               $('body,.listWifi li').css('background-color', '#FFFE54');
+               $('.listWifi li').css('border', '1px solid #000000');
+	  		 $('.listWifi p').css('color', '#000000');
+	  	}	
+	  	if(param==1){
+		$('.changefont').click()
+		 
+	  	}
+	}
+   
+    $('.changefont').on('click', function () {
+        $('#lycTitle').css('font-size', '26px');
+        $('#lyctext').css('font-size', '18px');
+        $('#totalTime,#currentTime').css('font-size', '14px');
+    });
+        
+        
+    </script>
+</body>
+</html>

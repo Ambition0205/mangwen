@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中转界面（成功或失败） 预约</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        html,body{
+        margin:0px;
+        height:100%;
+        }
+    </style>
+</head>
+<body style="background: #fff;">
+    <!-- 成功 -->
+    <!-- 根据返回的状态判断显示哪个 -->
+    <div style="padding-top:0.52rem;border-radius: 0.16rem;">
+        <div style="text-align: center;margin-bottom: 0.74rem;">
+                <img src="../dist/images/success.png" alt="" style="width:1.4rem;height:1.4rem;">
+                <p style="color: #333;font-size: 0.36rem;font-weight: 600;padding-top:0.44rem;padding-bottom:0.3rem;padding-left: 0.36rem;">预约成功！</p>
+                <div style="color: #999;font-size: 0.24rem;margin:0 0.56rem;line-height: 0.5rem;">您已成功预约此书，我们将在资源回馆后，第一时间与您确认借阅事宜</div>
+        </div>  
+        <div style="margin-left: 0.44rem;">
+            <h6 style="color:#131313;font-size: 0.32rem;margin-bottom: 0.24rem;">预借图书</h6>
+            <div class="clearfix">
+                    <img src="../dist/images//shuj.png" alt="" style="height:2.76rem;float:left;margin-right:0.32rem;">
+                    <div>
+                        <h4 style="font-size:0.32rem;padding-bottom:0.24rem;color:#131313;">武林盟主</h4>
+                        <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;">轩辕小胖</div>
+                        <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;">北京中联天盛出版社</div>
+                        <div style="font-size:0.28rem;color:#5E5E5E;padding-bottom:0.22rem;">分类号</div>
+                        <div style="font-size:0.28rem;color:#5E5E5E;">图书售价</div>
+            </div>
+        </div>
+    
+    </div>
+    
+    
+    <!-- 失败 -->
+        <!-- <div style="text-align: center;margin-bottom: 1.2rem;padding-top:0.52rem;">
+            <img src="../dist/images/fail.png" alt="" style="width:1.4rem;height:1.4rem;">
+            <p style="color: #333;font-size: 0.36rem;font-weight: 600;padding-top:0.44rem;padding-bottom:0.3rem;padding-left: 0.36rem;">预借失败！</p>
+            <div style="color: #999;font-size: 0.24rem;">图书在馆资源不足，请选择其他资源或返回再试一次</div>
+        </div>   -->
+    </div>
+    <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+    <script>
+  
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预约此书（弹窗）</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        #all{
+            /* position: relative; */
+        }
+        #bg{
+        /* position: absolute; */
+        background-color: rgba(51,51,51,0.9);
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+        display: block;
+        padding-top:2.24rem;
+        }
+    </style>
+</head>
+<body>
+        <div id="all">
+           <div id="bg">
+                <img src="../dist/images/zwcsimg.png" alt="" style="width:6.2rem;height:7.52rem;">
+                
+                <button style="color:#fff;position:absolute;bottom:0.6rem;left:0.86rem;border-radius: 0.6rem;width: 5.8rem;height: 1rem;line-height: 1rem;background: #1B44A5;border:1px solid #1B44A5;font-size: 0.36rem;">关闭窗口</button>
+           </div>
+        </div>
+    <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+    <script>
+  
+        $('#bg').on('click', function () {
+            $(this).css('display','none');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">           
+<meta http-equiv="Pragma" content="no-cache">
+<jsp:directive.include file="../includes/common.jsp" />
+<title>
+    <c:choose>
+        <c:when test="${bigTypeID eq '1001'}">粮油副食</c:when>
+        <c:when test="${bigTypeID eq '1002'}">酒水茶饮</c:when>
+        <c:when test="${bigTypeID eq '1003'}">休闲零食</c:when>
+        <c:when test="${bigTypeID eq '1004'}">富硒食品</c:when>
+        <c:otherwise>商品列表</c:otherwise>
+    </c:choose>
+</title>
+<script>
+//html的font-size设为100px
+(function(designWidth, maxWidth) {
+    var doc = document,
+            win = window;
+    var docEl = doc.documentElement;
+    var tid;
+    var rootItem,rootStyle;
+
+    function refreshRem() {
+        var width = docEl.getBoundingClientRect().width;
+        if (!maxWidth) {
+            maxWidth = 540;
+        };
+        if (width > maxWidth) {
+            width = maxWidth;
+        }
+        //与淘宝做法不同，直接采用简单的rem换算方法1rem=100px
+        var rem = width * 100 / designWidth;
+        //兼容UC开始
+        rootStyle="html{font-size:"+rem+'px !important}';
+        rootItem = document.getElementById('rootsize') || document.createElement("style");
+        if(!document.getElementById('rootsize')){
+            document.getElementsByTagName("head")[0].appendChild(rootItem);
+            rootItem.id='rootsize';
+        }
+        if(rootItem.styleSheet){
+            rootItem.styleSheet.disabled||(rootItem.styleSheet.cssText=rootStyle)
+        }else{
+            try{rootItem.innerHTML=rootStyle}catch(f){rootItem.innerText=rootStyle}
+        }
+        //兼容UC结束
+        docEl.style.fontSize = rem + "px";
+    };
+    refreshRem();
+
+    win.addEventListener("resize", function() {
+        clearTimeout(tid); //防止执行两次
+        tid = setTimeout(refreshRem, 300);
+    }, false);
+
+    win.addEventListener("pageshow", function(e) {
+        if (e.persisted) { // 浏览器后退的时候重新计算
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }
+    }, false);
+
+    if (doc.readyState === "complete") {
+        doc.body.style.fontSize = "16px";
+    } else {
+        doc.addEventListener("DOMContentLoaded", function(e) {
+            doc.body.style.fontSize = "16px";
+        }, false);
+    }
+})(640, 640);
+</script>
+</head>
+
+<body>
+<article class="specomm_ba">
+    <header class="specation_hea">
+    <form action="${ctx}/productView/porductList.htm" method="get">
+        <input type="text" name="wq" id="wq" placeholder="Search"  >
+        <%-- <input type="hidden" name="bigTypeID" value="${bigTypeID}" > --%>
+        <button type="button"><img src="${ctx}/images/wxweb/special_pic31.png" alt=""/></button>
+     </form>   
+    </header>
+    <section class="specomm_sen">
+        <cite>您是不是要找：</cite>
+        <aside id="wantData">
+        </aside>
+    </section>
+    <section class="specomm_s">
+        <cite>历史搜索记录</cite>
+        <aside id="historyDAta">
+        </aside>
+    </section>
+    <a href="#" class="specomm_a">清除历史记录</a>
+</article>
+
+<article class="min">
+<header class="specation_hea specomm_cli">
+    <input type="text" name="" placeholder="Search" value="${wq}" readonly>
+    <button type="button"><img src="${ctx}/images/wxweb/special_pic31.png" alt=""/></button>
+</form>
+</header>
+<!--顶部结束-->
+<section>
+     <c:forEach var="banner" items="${bannerData}" varStatus="s">
+         <c:if test="${s.index==0}">
+             <a href="${banner.link}"><img src="${ctx}/images/banner/${banner.image}" alt="${banner.title}"/></a>
+         </c:if>
+     </c:forEach> 
+</section>
+
+<article class="specomm_sx special_m">
+    <section>
+        <a href="javascript:;" class="on"><address><cite>综合</cite></address></a>
+        <a href="javascript:;"><address><cite>销量</cite><img src="${ctx}/images/wxweb/special_pic38.jpg" alt=""/></address></a>
+        <a href="javascript:;"><address><cite>评分</cite><img src="${ctx}/images/wxweb/special_pic38.jpg" alt=""/></address></a>
+    </section>
+    <section class="clear"></section>
+</article>
+
+<article class="specomm_jg">根据<span>“<em></em>”</span>查询结果</article>
+
+<article class="spehome_guess specomm_guess">
+    <section class="spehome_guessol">
+        <ol>
+        </ol>
+    </section>
+</article>
+<!--产品瀑布流结束-->
+<section class="clear"></section>
+<section id="pageInfo"></section>
+
+
+</article>
+
+<jsp:directive.include file="../includes/foot.jsp" />
+
+</body>
+</html>
+
+<script>
+//第一次加载
+var pars = {
+        page : 1,
+        orderBy :1,
+        wq : "${wq}",
+        bigTypeID : "${bigTypeID}"
+};
+productListAjaxPost(pars);
+
+$().ready(function(){
+    $("#wq").on('change',function(){
+         var wq = $("#wq").val();
+         var data = jQuery.param({wq:wq});
+         $.ajax({
+             url  :'${ctx}/productView/getWantSearchList.htm',
+             type :'post',
+             data :data,
+             dataType: "json",
+              error:function(msg){
+                 //请求失败时被调用的函数 
+              }, 
+              success:function(msg){
+                 var data=JSON.stringify(msg.data.list);
+                 var html = '';
+                 $.each(eval(data), function(index,item){ 
+                     html += '<a href="${ctx}/productView/porductList.htm?wq='+ item +'">'+ item +'</a>';
+                 })
+                 $("#wantData").html(html);
+              }
+             
+         })
+    })
+    
+    
+    
+    $(".specomm_sx a").on('click',function(){
+        $(this).addClass("on").siblings().removeClass("on");
+        pars.orderBy = parseInt($(".specomm_sx a").index($(this)))+1;
+        $(".spehome_guessol ol").html('');
+        productListAjaxPost(pars);  
+    })
+    
+
+    //下拉下载更多
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        }
+        else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可是范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }  
+    window.onscroll = function () {
+        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+            $(".spehome_mode img").show();
+            var orderBy = parseInt($(".specomm_sx a.on").index())+1 ; 
+              var page = parseInt($("#page").attr("page-data")); 
+              var pars = {
+                      page : page+1,
+                      orderBy : orderBy,
+                      bigTypeID : "${bigTypeID}"
+              };
+              productListAjaxPost(pars);  
+        }
+    };
+});
+
+    
+    function productListAjaxPost(pars){
+        $.ajax({
+            url:'${ctx}/productView/getProductList.htm',
+            type: "POST",
+            data: jQuery.param(pars),
+            dataType: "json",
+            error:function(msg){
+                //请求失败时被调用的函数 
+            }, 
+            success:function(msg){
+                var html = '';
+                var normalPrice=0;
+                var data=JSON.stringify(msg.data.list);
+                $.each(eval(data), function(index,item){ 
+                    images="";
+                    if(item.authFlag!=null){
+                        var auth=item.authFlag.split(",");
+                        for(var i=0;i<auth.length ;i++ ) {
+                             if(auth[i]!=""&&auth[i]!=null){
+                                 images+= '<img src="${ctx}/images/wxweb/special_pic'+auth[i]+'.jpg" alt=""/>';
+                             }
+                         } 
+                     }
+                     if(item.normalPrice!=null&&item.normalPrice!=''){
+                         normalPrice=item.normalPrice;
+                     }else{
+                         normalPrice=0;
+                     }
+                    
+                    html +='<li>';
+                    html +='    <a href="${ctx}/productDetailInfoView/productDetailInfoView.htm?productID='+item.productID+'"><img src="${ctx}/images/product/'+item.mainImage+'" alt=""/></a>';
+                    html +='    <cite><a href="${ctx}/productDetailInfoView/productDetailInfoView.htm?productID='+item.productID+'">' + item.name + '</a></cite>';
+                    html +='    <section class="spehome_guessol_img">';
+                    html +=        images;
+                    html +='    </section>';
+                    html +='    <section class="spehome_guessol_ti">';
+                /*     html +='        <aside>产地：'+ item.businessAreaName +'</aside>'; */
+                    html +='        <aside>'+ item.shopName +'</aside>';
+                    html +='    </section>';
+                    html +='    <section class="spehome_guessol_jg">';
+                    html +='        <em>￥'+ (item.price).toFixed(2) + '</em><del>￥'+normalPrice.toFixed(2) +'</del>';
+                    html +='        <a href="javascript:;"><img src="${ctx}/images/wxweb/special_pic42.png" alt="" οnclick="addToShopCart('+item.productID+","+item.hasSkuFlag+')"; /></a>';
+                    html +='    </section>';
+                    html +='    <section class="clear"></section>';
+                    html +='</li>';
+                })
+                $(".spehome_guessol ol").append(html);
+                
+                if(msg.data.pages>1 && pars.page < msg.data.pages){
+                    var pageInfo  = '<article class="spehome_mode" id="page" page-data="'+ pars.page +'">';
+                        pageInfo +='    <img src="${ctx}/images/wxweb/loading.gif" alt=""/>';
+                        pageInfo +='    <cite>上滑加载更多</cite>';
+                        pageInfo +='</article>';
+                    $("#pageInfo").html(pageInfo);
+                }else{
+                    $(".spehome_mode").remove();
+                    var pageInfo1  = '<article class="spehome_mode">';
+                    pageInfo1 +='    <cite>已经加载完</cite>';
+                    pageInfo1 +='</article>';
+                    $("#pageInfo").html(pageInfo1);
+                    $(".spehome_mode img").hide();
+                }
+                
+            }
+        })
+    }     
+    
+</script>

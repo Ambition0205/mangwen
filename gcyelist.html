@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="{CBL_MANGTU_RES}/home/css/index.css">
+	<title>正在借阅</title>
+	<script>
+		function resetFontSize() {
+			var baseFontSize = 100
+			var designWidth = 750
+			var width = window.innerWidth
+			var currentFontSize = (width / designWidth) * baseFontSize
+			document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+		}
+		window.onresize = function () {
+			resetFontSize()
+		};
+		resetFontSize()
+	</script>
+	<style>
+
+		.boxtwo li{
+			position: relative;
+			color:#0C0C0C;
+			margin:0.26rem;
+			background: #fff;
+			border-radius: 0.1rem;
+		}
+		.tximg{
+			width:1.6rem;
+			height:2.2rem;
+			margin:0.2rem;
+			margin-right:0.3rem;
+
+		}
+	</style>
+</head>
+
+<body>
+<section class="aui-flexView">
+	<header class="aui-navBar aui-navBar-fixed">
+	
+	</header>
+</section>
+
+<div>
+	<ul class="boxtwo">
+	    {loop $list $item}
+		<li onclick="godetail('{$item['bookrecno']}');">
+			<div class="clearfix" style="margin-bottom:12px;">
+				<img src="{CBL_MANGTU_RES}/home/images/3.jpg" alt="" class="tximg fl">
+				<div style="color:#383F49;font-size:0.32rem;margin-bottom:0.2rem;margin-top:0.2rem;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;" class="titles">{$item['title']}</div>
+				<div style="color:#F31010;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">{$item['author']}</div>
+				<div style="color:#999;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize">{$item['publisher']}</div>
+				<div style="color:#333;font-size:0.24rem;" class="fontsize"><span>{$item['price']}</span></div>
+				<div style="color:#333;font-size:0.24rem;margin-bottom:0.1rem;" class="fontsize"><span>{$item['isbn']}</span></div>
+			</div>
+		</li>
+        {/loop}
+
+	</ul>
+</div>
+	<div>
+		<img  src="{CBL_MANGTU_RES}/home/images/home.png"  style="width:1rem;height:1rem;position:fixed;bottom:1.2rem;right:0.4rem;z-index:9999;" onclick="goindex();"  alt="返回首页"  role="button"/>
+    </div>
+	<div style="display:none">
+	    <img class="changefont" src="{CBL_MANGTU_RES}/home/images/changesize.png" style="width:0.62rem;height:0.52rem;position: absolute;bottom:0.2rem;right:1.38rem;" alt="点击改变字体大小" role="button"/>
+	</div>
+<script type="text/javascript" src="{CBL_MANGTU_RES}/home/js/jquery.min.js"></script>
+
+<script>
+	window.onload=function(){
+		var param = '{$sizeSet}'; 
+		console.log(param)
+		var colorParam ="{$textColor}"
+	  		if(colorParam=='黑白对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#000');
+	  		 $('.boxtwo li div').css('color', '#F7F7F7');
+	  	}
+	  	if(colorParam=='白蓝对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#fff');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}
+	  	if(colorParam=='蓝黄对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#0915F5');
+	  		 $('.boxtwo li div').css('color', '#FFFE54');
+	  	}
+	  	if(colorParam=='白红对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#fff');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}
+	  	if(colorParam=='白黑对比度'){
+	  		console.log('你回复了默认')
+	  	}
+	  	if(colorParam=='黄黑对比度'){
+	  		 $('body,.boxtwo li').css('background-color', '#FFFE54');
+	  		 $('.boxtwo li div').css('color', '#000000');
+	  	}	
+	  	if(param==1){
+		$('.changefont').click()
+		 
+	  	}
+	}
+	var getdetail_url = "{php echo $this->createMobileUrl('collection',array('type'=>'detail'));}";
+	 function godetail(bookrecno){
+         //content = JSON.parse(Content);
+         window.location.href=getdetail_url+"&bookrecno="+bookrecno;
+     }
+      function goindex(){
+         //content = JSON.parse(Content);
+         window.location.href="{php echo $this->createMobileUrl('index',array('type'=>'index'));}";
+     }
+      //改变字体大小
+     $('.changefont').on('click', function () {
+              $('.titles').css('font-size', '0.48rem');
+            $('.fontsize').css('font-size', '0.32rem');
+             $('.tximg').css({"width": "2rem","height":"2.6rem"});
+          
+	});
+</script>
+</body>
+</html>

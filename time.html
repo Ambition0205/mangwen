@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+		<script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+    <script>
+		
+   		// 时间戳转 YY-mm-dd HH:ii:ss
+      function formatDateTime(timeStamp, returnType){
+		var date = new Date();
+		date.setTime(timeStamp * 1000);
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? ('0' + m) : m;
+		var d = date.getDate();
+		d = d < 10 ? ('0' + d) : d;
+		
+		if(returnType == 'ymd'){return y + '-' + m + '-' + d;}
+		if(returnType == 'ym'){return y + '-' + m ;}
+		if(returnType == 'str'){return y + '-' + m + '-' + d} 
+		return [y, m, d, h, minute, second];
+	}
+	console.log(formatDateTime(1523864932,'ymd'))
+    </script>
+</body>
+</html>

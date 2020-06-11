@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>微盲图</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+            function resetFontSize() {
+                var baseFontSize = 100
+                var designWidth = 750
+                var width = window.innerWidth
+                var currentFontSize = (width / designWidth) * baseFontSize
+                document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+            }
+            window.onresize = function () {
+                resetFontSize()
+            };
+            resetFontSize()
+        </script>
+    <style>
+        .box {
+            /* margin-top:0.4rem; */
+
+        }
+        .box ul{
+            margin-left:0.44rem;
+            margin-right:0.72rem;
+        }
+        .box ul li{
+            height:1.9rem;
+            margin-bottom:0.52rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="aui-flexView" style="margin-top:0.06rem;height:93%;">
+        <div style="display: flex;position: relative;z-index: 102;background: #fff;height:1.14rem;">
+            <a href="javascript:;">
+                <i class="icon " ></i>
+            </a>
+            <div style=" align-items: center;width: 90%;order: 2;margin-top:0.2rem;">
+                <div style="    background: #f0f0f0;border-radius: 0.6rem;position: relative;width: 100%;margin: 0 auto;height: 0.68rem;">
+                    <i class="icon icon-search" style="position: absolute;left:0.16rem;top: 0.14rem;"></i>
+                    <input type="text" placeholder="搜索你想要的书籍" style="width: 100%;background: none;border: none;text-align: left;height: 0.4rem;font-size:0.25rem;border-radius: 0.44rem;position: absolute;top: 0.14rem;left: 0.6rem;">
+                </div>
+            </div>
+        </div>
+        <div style="height:0.18rem;background:#F7F8FA;"></div>
+        <p class="refreshText" style="font-size: 0.32rem;text-align:center;margin-top:0.4rem;"></p>
+        <div class="box">
+           <ul id="refreshContainer">
+               <li>
+                <img src="../dist/images/book1.png" alt="" style="width:1.28rem;height:1.86rem;float:left;margin-right: 20px;" >
+                <div >
+                    <h4 style="font-size:0.32rem;padding-bottom:0.1rem;">锦绣凰图之重生侯府嫡女</h4>
+                    <div style="font-size:0.28rem;color:#5E646D;padding-bottom:0.24rem;">月下听风1</div>
+                    <div style="font-size:0.24rem;color:#868B95;">对《贵女重生：侯府下堂妻》感兴趣的人也在下场悲惨如此</div>
+                </div> 
+               </li>
+               <li>
+                <img src="../dist/images/book1.png" alt="" style="width:1.28rem;height:1.86rem;float:left;margin-right: 20px;" >
+                <div >
+                    <h4 style="font-size:0.32rem;padding-bottom:0.1rem;">锦绣凰图之重生侯府嫡女</h4>
+                    <div style="font-size:0.28rem;color:#5E646D;padding-bottom:0.24rem;">月下听风1</div>
+                    <div style="font-size:0.24rem;color:#868B95;">对《贵女重生：侯府下堂妻》感兴趣的人也在下场悲惨如此</div>
+                </div> 
+               </li>
+               <li>
+                <img src="../dist/images/book1.png" alt="" style="width:1.28rem;height:1.86rem;float:left;margin-right: 20px;" >
+                <div >
+                    <h4 style="font-size:0.32rem;padding-bottom:0.1rem;">锦绣凰图之重生侯府嫡女</h4>
+                    <div style="font-size:0.28rem;color:#5E646D;padding-bottom:0.24rem;">月下听风1</div>
+                    <div style="font-size:0.24rem;color:#868B95;">对《贵女重生：侯府下堂妻》感兴趣的人也在下场悲惨如此</div>
+                </div> 
+               </li>
+           </ul> 
+        </div>
+        <p class="refreshText2" style="font-size: 0.32rem;text-align:center;margin-top:0.4rem;"></p>
+    </section>
+    <div style="height:1rem;bottom:0px;border-top:1px solid #ccc;position: fixed;width: 100%; background: #fff;">
+        <img src="../dist/images/fanhui.png" style="width:0.44rem;height:0.36rem;margin-left:0.54rem;margin-top:0.3rem;"/>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="../dist/js/aui.js"></script>
+<script>
+     (function(window) {
+              var _element = document.getElementById('refreshContainer'),
+                _refreshText = document.querySelector('.refreshText'),
+                _startPos = 0,
+                _transitionHeight = 0;
+
+              _element.addEventListener('touchstart', function(e) {
+                  console.log('初始位置：', e.touches[0].pageY);
+                  _startPos = e.touches[0].pageY;
+                  _element.style.position = 'relative';
+                  _element.style.transition = 'transform 0s';
+              }, false);
+
+              _element.addEventListener('touchmove', function(e) {
+                  console.log('当前位置：', e.touches[0].pageY);
+                  _transitionHeight = e.touches[0].pageY - _startPos;
+
+                  if (_transitionHeight > 0 && _transitionHeight < 60) {
+                      _refreshText.innerText = '下拉刷新';
+                      _element.style.transform = 'translateY('+_transitionHeight+'px)';
+
+                      if (_transitionHeight > 55) {
+                        _refreshText.innerText = '释放更新';
+                      }
+                  }                
+              }, false);
+
+              _element.addEventListener('touchend', function(e) {
+                  _element.style.transition = 'transform 0.5s ease 1s';
+                  _element.style.transform = 'translateY(0px)';
+                  _refreshText.innerText = '更新中...';
+
+                  // todo...    
+
+              }, false);
+                //上啦加载
+                // 获取当前滚动条的位置
+              function getScrollTop() { 
+                var scrollTop = 0; 
+                if (document.documentElement && document.documentElement.scrollTop) { 
+                    scrollTop = document.documentElement.scrollTop; 
+                } else if (document.body) { 
+                    scrollTop = document.body.scrollTop; 
+                } 
+                return scrollTop; 
+            } 
+
+            // 获取当前可视范围的高度 
+            function getClientHeight() { 
+                var clientHeight = 0; 
+                if (document.body.clientHeight && document.documentElement.clientHeight) { 
+                    clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight); 
+                } 
+                else { 
+                    clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight); 
+                } 
+                return clientHeight; 
+            } 
+
+            // 获取文档完整的高度 
+            function getScrollHeight() { 
+                return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight); 
+            }
+
+            var _text = document.querySelector('.refreshText2'),
+            _container = document.getElementById('refreshContainer');
+
+            // 节流函数
+            var throttle = function(method, context){
+            clearTimeout(method.tId);
+            method.tId = setTimeout(function(){
+                method.call(context);
+            }, 300);
+            }
+
+            function fetchData() {
+                setTimeout(function() {
+                    _container.insertAdjacentHTML('beforeend', '<li>new add...</li>');
+                }, 1000);
+            }
+
+            window.onscroll = function() {
+            if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+                _text.innerText = '加载中...';
+                throttle(fetchData);
+            }
+            };
+    })(window);
+</script>
+</html>

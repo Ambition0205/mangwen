@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;background:#fff;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的收藏</title>
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script>
+        function resetFontSize() {
+            var baseFontSize = 100
+            var designWidth = 750
+            var width = window.innerWidth
+            var currentFontSize = (width / designWidth) * baseFontSize
+            document.getElementsByTagName('html')[0].style.fontSize = currentFontSize + 'px'
+        }
+        window.onresize = function () {
+            resetFontSize()
+        };
+        resetFontSize()
+    </script>
+    <style>
+        .btn1 {
+            margin-left: 1.58rem;
+            margin-top: 0.4rem;
+
+        }
+
+        .btn {
+            font-size: 0.3rem;
+            width: 2.16rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            color: #666666;
+            background: #F2F2F2;
+        }
+
+        .content {
+            margin: 0.2rem auto;
+            display: none;
+            font-size: 12px;
+        }
+
+        .content ul {
+            margin: 0 0.6rem;
+            margin-top: 0.3rem;
+        }
+
+        .content ul li {
+            height: 1rem;
+            line-height: 1rem;
+            border-bottom: 1px solid #EEEEEE;
+            font-size: 14px;
+        }
+
+        .btn.active {
+            background-color: #0060FF;
+            color: #fff;
+        }
+
+        .content.show {
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body style="background:#fff;">
+    <div class="btn1 clearfix">
+        <div class="btn active" style="float:left;border-bottom-left-radius: 30px;border-top-left-radius: 30px;">分类收藏</div>
+        <div class="btn" style="float:left;border-bottom-right-radius: 30px;border-top-right-radius: 30px;">章节收藏</div>
+    </div>
+    <div class="content show">
+        <div class="box">
+            <ul>
+                <li>文学类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+                <li>言情类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+                <li>言情类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+                <li>文学类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+                <li>都市言情类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+                <li>武侠类
+                    <img src="../dist/images/arrow-right.png"
+                        style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="box">
+            <ul>
+                    <li>文学类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+                    <li>言情类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+                    <li>言情类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+                    <li>文学类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+                    <li>都市言情类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+                    <li>武侠类
+                        <img src="../dist/images/arrow-right.png"
+                            style="width:0.12rem;height:0.2rem;margin-top:0.4rem;margin-right:0.2rem;float:right;" />
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        //获取页面的每个按钮
+        var btns = document.getElementsByClassName("btn")
+        //获取内容盒子
+        var contents = document.getElementsByClassName("content")
+       
+
+        //遍历每个按钮为其添加点击事件
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                //对当前点击的按钮赋予active类名及显示当前按钮对应的内容
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].className = btns[j].className.replace(' active', '').trim();
+                    contents[j].className = contents[j].className.replace(' show', '').trim();
+                }
+                this.className = this.className + ' active';
+                contents[this.index].className = contents[this.index].className + ' show';
+                console.log(this.index)
+                console.log(contents[this.index].className)
+            };
+
+        }
+    </script>
+</body>
+
+</html>
